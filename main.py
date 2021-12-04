@@ -1,3 +1,4 @@
 import image_creation
 if __name__ == '__main__':
-    image_creation.create_image("minutiaeExtraction/image1.xyt")
+    folder_path = 'minutiaeExtraction'
+    image_creation.create_image(folder_path, "image1.xyt")
