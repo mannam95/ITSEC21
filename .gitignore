@@ -134,3 +134,11 @@ dmypy.json
 *.index
 *.data-00000-of-00001
 model/training_checkpoints/checkpoint
+*.brw
+*.dm
+*.hcm
+*.lcm
+data/minutiaeExtraction/.DS_Store
+*.lfm
+*.min
+*.qm
