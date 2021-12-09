@@ -134,11 +134,15 @@ dmypy.json
 *.index
 *.data-00000-of-00001
 model/training_checkpoints/checkpoint
+
+#Ignore these files as they are not necessary for minutiae map reconstrucion
 *.brw
 *.dm
 *.hcm
 *.lcm
-data/minutiaeExtraction/.DS_Store
 *.lfm
 *.min
 *.qm
+
+#Exclude DS_Store
+*.DS_Store
