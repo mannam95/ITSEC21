@@ -6,5 +6,9 @@ import glob as glob
 #Clone the google drive to the folder where the tif files are present
 for name in glob.glob('*.tif'):
     jpegName = str(name).rstrip(".tif")
-    jpegPath = '/content/drive/My Drive/Colab Notebooks/OVGU/ITSEC_21/imageConversion/FingerPrints/' + jpegName + '.jpeg'
-    Image.open(name).convert('RGB').save(jpegPath, dpi=(500, 500), quality=500)
+    jpegPath = '/content/drive/My Drive/Colab Notebooks/OVGU/ITSEC_21/imageConversion/FingerPrints_1Channel/' + jpegName + '.jpeg'
+    im = Image.open(name)
+    greyScaleImage = im.convert("L")
+    # im.convert('RGB').save(jpegPath, dpi=(500, 500))
+    greyScaleImage.save(jpegPath, dpi=(500, 500), quality=500)
+    # im.convert("P", palette=Image.ADAPTIVE, colors=8).save(jpegPath, dpi=(500, 500))
