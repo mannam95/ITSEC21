@@ -28,7 +28,7 @@ def read_minutiae(arr):
 
 
 def create_image_from_map(minutiaes, file_name):
-    array = np.zeros([93, 103], dtype=np.uint8)
+    array = np.zeros([326, 357], dtype=np.uint8)
     for minutiae in minutiaes.minutiae_list:
         lower_y = minutiae.y_position-5
         upper_y = minutiae.y_position+6
