@@ -5,10 +5,26 @@ from PIL import Image
 import os
 
 
+# create images of minutiae maps for all .xyt files
 def create_all_minutiae_maps(folder_path):
     for file_name in os.listdir(folder_path):
         if file_name.endswith(".xyt"):
             create_image(folder_path, file_name)
+
+
+def transform_image(image):
+    pad_left = int(math.ceil(357 - 326)/2)
+    pad_right = int(math.floor(357-326)/2)
+    padded_image = scale(np.pad(image, [(0, 0), (pad_left, pad_right)], mode='constant'), 357, 357)
+    return padded_image
+
+# give total values for aimed height and width
+def scale(im, height, width):
+  initial_height = len(im)     # source number of rows
+  initial_width = len(im[0])  # source number of columns
+  return [[im[int(initial_height * r / height)][int(initial_width * c / width)]
+           for c in range(width)] for r in range(height)]
+
 
 def create_image(folder_path, file_name):
     path = folder_path + "/" + file_name
@@ -35,6 +51,7 @@ def create_image_from_map(minutiaes, file_name):
         lower_x = minutiae.x_position-5
         upper_x = minutiae.x_position+6
         array[lower_y: upper_y, lower_x: upper_x] = math.floor(minutiae.theta/2)
-    img = Image.fromarray(array)
+    transformed_image = np.array(transform_image(array))
+    img = Image.fromarray(transformed_image)
     path = "data/minutiaeMaps/" + file_name[:-3] + "png"
     img.save(path)
