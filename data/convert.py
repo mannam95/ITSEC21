@@ -1,4 +1,4 @@
-#Note:- The following code runned in colab, for some reason it doesn't work in local system
+#Note:- The following code ran in colab, for some reason it doesn't work in local system
 import os
 from PIL import Image
 import glob as glob
