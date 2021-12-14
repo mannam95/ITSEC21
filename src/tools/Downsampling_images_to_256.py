@@ -2,7 +2,7 @@
 import numpy as np
 import tensorflow as tf
 from PIL import Image
-from matplotlib import pyplot as plt
+# from matplotlib import pyplot as plt
 
 import os
 
@@ -21,7 +21,8 @@ class Resize_Images():
       
       final_resized_image = self.resize_images_to_256(image, resize_with_pad)
       #plt.imshow(final_resized_image)
-      final_resized_image.save(write_path + '/resized_' + file)
+      final_resized_image.save(write_path + '/resized_' + file, dpi=(500, 500), quality=500)
+      break
       
   
   def resize_images_to_256(self, image, resize_with_pad):
@@ -43,11 +44,11 @@ def main():
   read_minutiae_map_folder_path = '/content/drive/MyDrive/ITSEC/minutiaeMaps'
   write_minutiae_map_folder_path = '/content/drive/MyDrive/ITSEC/Minutiae_Map_Images_256'
 
-  read_fingerprint_folder_path = '/content/drive/MyDrive/ITSEC/FingerPrints_1Channel'
-  write_fingerprint_folder_path = '/content/drive/MyDrive/ITSEC/Fingerprint_Images_256'
+  read_fingerprint_folder_path = '../../data/initial_Pre_Process_data/FingerPrints/FingerPrints_1Channel'
+  write_fingerprint_folder_path = '../../data/initial_Pre_Process_data/FingerPrints/Fingerprint_Images_256'
 
   resize_images = Resize_Images()
-  resize_images.read_all_files(read_folder_path, write_folder_path, False)
+  # resize_images.read_all_files(read_folder_path, write_folder_path, False)
   resize_images.read_all_files(read_fingerprint_folder_path, write_fingerprint_folder_path, True)
 
 if __name__ == '__main__':
