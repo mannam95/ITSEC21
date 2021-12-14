@@ -46,7 +46,7 @@ def main():
   write_fingerprint_folder_path = '../../data/initial_Pre_Process_data/FingerPrints/Fingerprint_Images_256'
 
   resize_images = Resize_Images()
-  resize_images.read_all_files(read_folder_path, write_folder_path, False)
+  resize_images.read_all_files(read_minutiae_map_folder_path, write_minutiae_map_folder_path, False)
   resize_images.read_all_files(read_fingerprint_folder_path, write_fingerprint_folder_path, True)
 
 if __name__ == '__main__':

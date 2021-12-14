@@ -5,6 +5,7 @@ from PIL import Image
 import os
 
 
+
 # create images of minutiae maps for all .xyt files
 def create_all_minutiae_maps(folder_path):
     for file_name in os.listdir(folder_path):
@@ -53,5 +54,5 @@ def create_image_from_map(minutiaes, file_name):
         array[lower_y: upper_y, lower_x: upper_x] = math.floor(minutiae.theta/2)
     transformed_image = np.array(transform_image(array))
     img = Image.fromarray(transformed_image)
-    path = "data/minutiaeMaps/" + file_name[:-3] + "png"
-    img.save(path)
+    path = "../../data/initial_Pre_Process_data/Minutiae/minutiaeMaps/" + file_name[:-3] + "jpg"
+    img.save(path, dpi=(500, 500), quality=500)
