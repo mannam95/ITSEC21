@@ -15,12 +15,16 @@ class Resize_Images():
       image = tf.io.read_file(str(read_path + '/' + file))
       if file.endswith(".png"):
         image = tf.io.decode_png(image)
-      if file.endswith(".jpeg"):
+      if (file.endswith(".jpeg") or file.endswith(".jpg")):
         image = tf.io.decode_jpeg(image)
       
       final_resized_image = self.resize_images_to_256(image, resize_with_pad)
       #plt.imshow(final_resized_image)
-      final_resized_image.save(write_path + '/resized_' + file, dpi=(500, 500), quality=500)
+      if (file.endswith(".png") or file.endswith(".jpg")):
+        final_resized_image.save(write_path + '/resized_' + file[:-3] + "jpg")
+      else:
+        if (file.endswith(".jpeg")):
+          final_resized_image.save(write_path + '/resized_' + file[:-4] + "jpg", dpi=(500, 500), quality=500)
       
   
   def resize_images_to_256(self, image, resize_with_pad):
@@ -39,15 +43,15 @@ class Resize_Images():
     return pil_image
 
 def main():
-  read_minutiae_map_folder_path = '../../data/initial_Pre_Process_data/FingerPrints/minutiaeMaps'
-  write_minutiae_map_folder_path = '../../data/initial_Pre_Process_data/FingerPrints/Minutiae_Map_Images_256'
+  read_minutiae_map_folder_path = '/content/drive/MyDrive/ITSEC/minutiaeMaps_JPG'
+  write_minutiae_map_folder_path = '/content/drive/MyDrive/ITSEC/MMI_JPG'
 
-  read_fingerprint_folder_path = '../../data/initial_Pre_Process_data/FingerPrints/FingerPrints_1Channel'
-  write_fingerprint_folder_path = '../../data/initial_Pre_Process_data/FingerPrints/Fingerprint_Images_256'
+  read_fingerprint_folder_path = '/content/drive/MyDrive/ITSEC/FingerPrints_1Channel'
+  write_fingerprint_folder_path = '/content/drive/MyDrive/ITSEC/FPI_JPG'
 
   resize_images = Resize_Images()
   resize_images.read_all_files(read_minutiae_map_folder_path, write_minutiae_map_folder_path, False)
-  resize_images.read_all_files(read_fingerprint_folder_path, write_fingerprint_folder_path, True)
+  #resize_images.read_all_files(read_fingerprint_folder_path, write_fingerprint_folder_path, True)
 
 if __name__ == '__main__':
   main()
