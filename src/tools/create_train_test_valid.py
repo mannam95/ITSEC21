@@ -8,7 +8,7 @@ Min_Out_Path = "D:/Git_WorkSpace/ITSEC21/data/Minutiae_Maps/"
 # https://pypi.org/project/split-folders/
 # Split with a ratio.
 # To only split into training and validation set, set a tuple to `ratio`, i.e, `(.8, .2)`.
-splitfolders.ratio(Min_Inp_Path, 
-                    output=Min_Out_Path, 
+splitfolders.ratio(Finger_Inp_Path, 
+                    output=Finger_Out_Path, 
                     seed=1337, 
                     ratio=(.7, .1, .2))
