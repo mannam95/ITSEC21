@@ -16,7 +16,7 @@ data_Aug_Types = [
 ]
 
 savePath_Min = (
-    "D:/Git_WorkSpace/ITSEC21/data/model_Train_Data/data_Augmentation/minutiae_Maps_20/"
+    "D:/Git_WorkSpace/ITSEC21/data/model_Train_Data/data_Augmentation/Minutiae_Maps_20/"
 )
 
 # FingerPrints Path
@@ -84,13 +84,17 @@ def perform_Sugmentation():
             Path(savePath_Fin + folder).mkdir(parents=True, exist_ok=True)
             for index, image in enumerate(files):
                 imagePath_Min = directoryPath_Min + folder + image
-                destPath_Min = (
-                    savePath_Min + folder + augmentType + "_" + str(index) + ".jpg"
-                )
                 imagePath_Fin = directoryPath_Fin + folder + image
-                destPath_Fin = (
-                    savePath_Fin + folder + augmentType + "_" + str(index) + ".jpg"
-                )
+                if folder != directorySubFolders[1]:
+                    destPath_Min = savePath_Min + folder + image
+                    destPath_Fin = savePath_Fin + folder + image
+                else:
+                    destPath_Min = (
+                        savePath_Min + folder + augmentType + "_" + str(index) + ".jpg"
+                    )
+                    destPath_Fin = (
+                        savePath_Fin + folder + augmentType + "_" + str(index) + ".jpg"
+                    )
                 if augmentType == data_Aug_Types[0]:
                     copyFunction(imagePath=imagePath_Min, destPath=destPath_Min)
                     copyFunction(imagePath=imagePath_Fin, destPath=destPath_Fin)
