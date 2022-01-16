@@ -151,3 +151,4 @@ model/training_checkpoints/checkpoint
 #Ignore the below folder
 data/re_pre-Process/**
 data/re_pre-Process_2/**
+data/CrossMatch_Sample_DB/original_tif/**
