@@ -36,10 +36,10 @@ def create_all_minutiae_maps_filtered(folder_path, threshold):
 
 
 def transform_image(image, size_x, size_y):
-    pad_left = max(0,int(math.ceil(size_y - size_x)/2))
-    pad_right = max(0,int(math.floor(size_y-size_x)/2))
-    pad_top = max(0,int(math.ceil(size_x - size_y)/2))
-    pad_bottom = max(0,int(math.floor(size_x-size_y)/2))
+    pad_left = max(0,int(math.ceil((size_y - size_x)/2)))
+    pad_right = max(0,int(math.floor((size_y-size_x)/2)))
+    pad_top = max(0,int(math.ceil((size_x - size_y)/2)))
+    pad_bottom = max(0,int(math.floor((size_x-size_y)/2)))
 
     #padded_image = scale(np.pad(image, [(pad_top, pad_bottom), (pad_left, pad_right)], mode='constant'), 256, 256)
     padded_image = np.pad(image, [(pad_top, pad_bottom), (pad_left, pad_right)], mode='constant')
