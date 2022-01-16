@@ -76,8 +76,8 @@ def main():
         "../../data/re_pre-Process/Minutiae/resize/minutiaeMaps40_256"
     )
 
-    read_fingerprint_folder_path = '../../data/re_pre-Process_2/FingerPrints/FingerPrints_1Channel'
-    write_fingerprint_folder_path = '../../data/re_pre-Process_2/FingerPrints/resize/FingerPrints_1Channel_256'
+    read_fingerprint_folder_path = '../../data/CrossMatch_Sample_DB/FingerPrints/original_jpeg'
+    write_fingerprint_folder_path = '../../data/CrossMatch_Sample_DB/FingerPrints/resize/FingerPrints_All'
 
     resize_images = Resize_Images()
 

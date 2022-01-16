@@ -152,3 +152,6 @@ model/training_checkpoints/checkpoint
 data/re_pre-Process/**
 data/re_pre-Process_2/**
 data/CrossMatch_Sample_DB/original_tif/**
+
+**/resize/**
+**/model_Data/**
