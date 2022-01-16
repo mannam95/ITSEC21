@@ -4,7 +4,7 @@ from pathlib import Path
 
 # Minutiae Paths
 directoryPath_Min = (
-    "D:/Git_WorkSpace/ITSEC21/data/model_Train_Data/Minutiae_Maps/minutiae_Maps_20/"
+    "D:/Git_WorkSpace/ITSEC21/data/re_pre-Process/model_Data/minutiae_Maps_All/"
 )
 directorySubFolders = ["test/", "train/", "val/"]
 data_Aug_Types = [
@@ -16,13 +16,13 @@ data_Aug_Types = [
 ]
 
 savePath_Min = (
-    "D:/Git_WorkSpace/ITSEC21/data/model_Train_Data/data_Augmentation/Minutiae_Maps_20/"
+    "D:/Git_WorkSpace/ITSEC21/data/re_pre-Process_2/data_Augmentation/A/"
 )
 
 # FingerPrints Path
-directoryPath_Fin = "D:/Git_WorkSpace/ITSEC21/data/model_Train_Data/FingerPrints/"
+directoryPath_Fin = "D:/Git_WorkSpace/ITSEC21/data/re_pre-Process_2/model_Data/FingerPrints/"
 savePath_Fin = (
-    "D:/Git_WorkSpace/ITSEC21/data/model_Train_Data/data_Augmentation/FingerPrints_20/"
+    "D:/Git_WorkSpace/ITSEC21/data/re_pre-Process_2/data_Augmentation/B/"
 )
 
 # Copies the same image to different path

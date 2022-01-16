@@ -4,23 +4,18 @@
 
 import os
 
+fing_Relative_Path = "D:/Git_WorkSpace/ITSEC21/data/re_pre-Process_2/data_Augmentation/A"
+min_Relative_Path = "D:/Git_WorkSpace/ITSEC21/data/re_pre-Process_2/data_Augmentation/B"
+
 # FingerPrints Path
-F_Test = os.listdir("D:/Git_WorkSpace/ITSEC21/data/model_Train_Data/FingerPrints/test")
-F_Train = os.listdir(
-    "D:/Git_WorkSpace/ITSEC21/data/model_Train_Data/FingerPrints/train"
-)
-F_Valid = os.listdir("D:/Git_WorkSpace/ITSEC21/data/model_Train_Data/FingerPrints/val")
+F_Test = os.listdir(fing_Relative_Path + "/test")
+F_Train = os.listdir(fing_Relative_Path + "/train")
+F_Valid = os.listdir(fing_Relative_Path + "/val")
 
 # Minutiate Path
-M_Test = os.listdir(
-    "D:/Git_WorkSpace/ITSEC21/data/model_Train_Data/Minutiae_Maps/minutiae_Maps_40/test"
-)
-M_Train = os.listdir(
-    "D:/Git_WorkSpace/ITSEC21/data/model_Train_Data/Minutiae_Maps/minutiae_Maps_40/train"
-)
-M_Valid = os.listdir(
-    "D:/Git_WorkSpace/ITSEC21/data/model_Train_Data/Minutiae_Maps/minutiae_Maps_40/val"
-)
+M_Test = os.listdir(min_Relative_Path + "/test")
+M_Train = os.listdir(min_Relative_Path + "/train")
+M_Valid = os.listdir(min_Relative_Path + "/val")
 
 
 F_Test_New = [s.replace(".jpg", "") for s in F_Test]
