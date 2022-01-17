@@ -73,11 +73,12 @@ def read_minutiae(arr):
 def create_image_from_map(minutiaes, file_name, output_folder, size_x, size_y, threshold):
     array = np.zeros([size_y, size_x], dtype=np.uint8)
     for minutiae in minutiaes.minutiae_list:
-        lower_y = minutiae.y_position-5
-        upper_y = minutiae.y_position+6
-        lower_x = minutiae.x_position-5
-        upper_x = minutiae.x_position+6
+        lower_y = max(0, (size_y - 1) - minutiae.y_position-5)
+        upper_y = min(size_y-1, (size_y - 1) - minutiae.y_position+6)
+        lower_x = max(0, minutiae.x_position-5)
+        upper_x = min(size_x-1, minutiae.x_position+6)
         array[lower_y: upper_y, lower_x: upper_x] = math.floor(minutiae.theta/2)
+        # array[lower_x: upper_x, lower_y: upper_y] = math.floor(minutiae.theta/2)
     transformed_image = np.array(transform_image(array, size_x, size_y))
     img = Image.fromarray(transformed_image)
     path = output_folder + (("" + str(threshold)) if threshold>0 else "")

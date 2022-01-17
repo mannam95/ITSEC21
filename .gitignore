@@ -155,3 +155,4 @@ data/CrossMatch_Sample_DB/original_tif/**
 
 **/resize/**
 **/model_Data/**
+**/CrossMatch_Sample_DB/dataAugmentation/**

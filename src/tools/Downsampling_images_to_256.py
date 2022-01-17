@@ -56,10 +56,10 @@ def main():
     # write_minutiae_map_folder_path = '../../data/initial_Pre_Process_data/Minutiae/Minutiae_Map_Images_256_JPG'
 
     read_minutiae_map_folder_path = (
-        "../../data/re_pre-Process/Minutiae/minutiaeMaps"
+        "../../data/CrossMatch_Sample_DB/Minutiae/minutiaeMaps"
     )
     write_minutiae_map_folder_path = (
-        "../../data/re_pre-Process/Minutiae/resize/minutiaeMaps_256"
+        "../../data/CrossMatch_Sample_DB/Minutiae/resize/minutiaeMaps_All"
     )
 
     read_minutiae_map_folder_path_20 = (
@@ -85,9 +85,9 @@ def main():
     # resize_images.read_all_files(read_minutiae_map_folder_path, write_minutiae_map_folder_path, False)
     # resize_images.read_all_files(read_fingerprint_folder_path, write_fingerprint_folder_path, True)
 
-    # resize_images.read_all_files(
-    #     read_minutiae_map_folder_path, write_minutiae_map_folder_path, False
-    # )
+    resize_images.read_all_files(
+        read_minutiae_map_folder_path, write_minutiae_map_folder_path, False
+    )
 
     # resize_images.read_all_files(
     #     read_minutiae_map_folder_path_20, write_minutiae_map_folder_path_20, False
@@ -98,9 +98,9 @@ def main():
 
 
     # Finger Prints
-    resize_images.read_all_files(
-        read_fingerprint_folder_path, write_fingerprint_folder_path, False
-    )
+    # resize_images.read_all_files(
+    #     read_fingerprint_folder_path, write_fingerprint_folder_path, False
+    # )
 
 
 if __name__ == "__main__":
