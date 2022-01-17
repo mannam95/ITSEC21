@@ -148,13 +148,19 @@ model/training_checkpoints/checkpoint
 *.DS_Store
 
 
-#Ignore the below folder
-**/resize/**
-**/model_Data/**
-**/dataAugmentation/**
-**/FingerPrints/**
-**/Minutiae/**
 
-#Don't Ignore just one folder
-!data/U_Are_U/FingerPrints/original_jpeg/*
-!**/Minutiae/minutiaeExtraction
+**/U_Are_U/*
+
+
+
+**/CrossMatch_Sample_DB/*
+!**/CrossMatch_Sample_DB/FingerPrints/
+!**/CrossMatch_Sample_DB/Minutiae/
+
+# add the subfolder(s) you want to track:
+**/CrossMatch_Sample_DB/FingerPrints/*
+!**/CrossMatch_Sample_DB/FingerPrints/original_jpeg/*
+!**/CrossMatch_Sample_DB/Minutiae/minutiaeExtraction/*
+
+
+
