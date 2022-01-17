@@ -148,10 +148,15 @@ model/training_checkpoints/checkpoint
 *.DS_Store
 
 
-
+# U_ARE_U
 **/U_Are_U/*
+!**/U_Are_U/FingerPrints/
+**/U_Are_U/FingerPrints/*
+!**/U_Are_U/FingerPrints/original_jpeg/
 
-
+!**/U_Are_U/Minutiae/
+**/U_Are_U/Minutiae/*
+!**/U_Are_U/Minutiae/minutiaeExtraction/
 
 **/CrossMatch_Sample_DB/*
 !**/CrossMatch_Sample_DB/FingerPrints/
