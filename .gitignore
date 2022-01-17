@@ -149,10 +149,14 @@ model/training_checkpoints/checkpoint
 
 
 #Ignore the below folder
-data/re_pre-Process/**
-data/re_pre-Process_2/**
-data/CrossMatch_Sample_DB/original_tif/**
+data/U_Are_U/re_pre-Process/**
+data/U_Are_U/re_pre-Process_2/**
+**/U_Are_U/model_Data/**
+**/U_Are_U/dataAugmentation/**
+data/U_Are_U/FingerPrints/original_tif/**
+
 
 **/resize/**
 **/model_Data/**
 **/CrossMatch_Sample_DB/dataAugmentation/**
+data/CrossMatch_Sample_DB/FingerPrints/original_tif/**
