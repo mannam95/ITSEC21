@@ -158,14 +158,15 @@ model/training_checkpoints/checkpoint
 **/U_Are_U/Minutiae/*
 !**/U_Are_U/Minutiae/minutiaeExtraction/
 
+# CrossMatch_Sample_DB
 **/CrossMatch_Sample_DB/*
 !**/CrossMatch_Sample_DB/FingerPrints/
-!**/CrossMatch_Sample_DB/Minutiae/
-
-# add the subfolder(s) you want to track:
 **/CrossMatch_Sample_DB/FingerPrints/*
-!**/CrossMatch_Sample_DB/FingerPrints/original_jpeg/*
-!**/CrossMatch_Sample_DB/Minutiae/minutiaeExtraction/*
+!**/CrossMatch_Sample_DB/FingerPrints/original_jpeg/
+
+!**/CrossMatch_Sample_DB/Minutiae/
+**/CrossMatch_Sample_DB/Minutiae/*
+!**/CrossMatch_Sample_DB/Minutiae/minutiaeExtraction/
 
 
 
