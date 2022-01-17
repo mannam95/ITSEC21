@@ -156,5 +156,5 @@ model/training_checkpoints/checkpoint
 **/Minutiae/**
 
 #Don't Ignore just one folder
-!**/FingerPrints/original_jpeg
-!**//Minutiae/minutiaeExtraction
+!data/U_Are_U/FingerPrints/original_jpeg/*
+!**/Minutiae/minutiaeExtraction
