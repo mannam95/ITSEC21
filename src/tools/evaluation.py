@@ -4,7 +4,7 @@ import base64
 import json
 import requests
 
-dirPath = "D:/FingerPrint_Dataset/Logs/CrossMatch/cross_all_v4/test_latest/images/"
+dirPath = "D:/FingerPrint_Dataset/Logs/CrossMatch/cross_all_v10/test_latest/images/"
 
 
 files = os.listdir(dirPath)
