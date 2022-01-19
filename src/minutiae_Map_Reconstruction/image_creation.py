@@ -62,7 +62,14 @@ def parse(path, threshold):
     m_map = minutiae_map.MinutiaeMap()
     with open(path) as f:
         lines = f.readlines()
-        m_map.minutiae_list = [read_minutiae(list(map(int, x.split()))) for x in lines if int(x.split()[3]) >= threshold]
+
+        # m_map.minutiae_list = [read_minutiae(list(map(int, x.split()))) for x in lines if int(x.split()[3]) >= threshold]
+        m_map.minutiae_list = [read_minutiae(list(map(int, x.split()))) for x in lines]
+        i = len(m_map.minutiae_list)-1
+        while i > 0:
+            if len(m_map.minutiae_list) >= 11 and m_map.minutiae_list[i].quality < threshold:
+                del m_map.minutiae_list[i]
+            i = i-1
     return m_map
 
 
