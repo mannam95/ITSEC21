@@ -4,8 +4,11 @@
 
 import os
 
-fing_Relative_Path = "D:/Git_WorkSpace/ITSEC21/data/re_pre-Process_2/data_Augmentation/A"
-min_Relative_Path = "D:/Git_WorkSpace/ITSEC21/data/re_pre-Process_2/data_Augmentation/B"
+
+RelativePath = "D:/Git_WorkSpace/ITSEC21/data/CrossMatch_Sample_DB/model_Data/"
+
+fing_Relative_Path = RelativePath + "B"
+min_Relative_Path = RelativePath + "A"
 
 # FingerPrints Path
 F_Test = os.listdir(fing_Relative_Path + "/test")

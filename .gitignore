@@ -148,7 +148,25 @@ model/training_checkpoints/checkpoint
 *.DS_Store
 
 
-#Ignore the below folder
-data/re_pre-Process/**
-data/re_pre-Process_2/**
-data/CrossMatch_Sample_DB/original_tif/**
+# U_ARE_U
+**/U_Are_U/*
+!**/U_Are_U/FingerPrints/
+**/U_Are_U/FingerPrints/*
+!**/U_Are_U/FingerPrints/original_jpeg/
+
+!**/U_Are_U/Minutiae/
+**/U_Are_U/Minutiae/*
+!**/U_Are_U/Minutiae/minutiaeExtraction/
+
+# CrossMatch_Sample_DB
+**/CrossMatch_Sample_DB/*
+!**/CrossMatch_Sample_DB/FingerPrints/
+**/CrossMatch_Sample_DB/FingerPrints/*
+!**/CrossMatch_Sample_DB/FingerPrints/original_jpeg/
+
+!**/CrossMatch_Sample_DB/Minutiae/
+**/CrossMatch_Sample_DB/Minutiae/*
+!**/CrossMatch_Sample_DB/Minutiae/minutiaeExtraction/
+
+
+

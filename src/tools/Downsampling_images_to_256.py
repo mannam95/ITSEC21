@@ -19,7 +19,7 @@ class Resize_Images:
         super().__init__(**kwargs)
 
 
-    def read_all_files(self, read_path, write_path, resize_with_pad=True):
+    def read_all_files(self, read_path, write_path):
         for file in os.listdir(read_path):
             image = tf.io.read_file(str(read_path + "/" + file))
             # This will downsample the minutiae maps
@@ -52,55 +52,21 @@ class Resize_Images:
 
 
 def main():
-    # read_minutiae_map_folder_path = '../../data/initial_Pre_Process_data/Minutiae/minutiaeMaps_JPG'
-    # write_minutiae_map_folder_path = '../../data/initial_Pre_Process_data/Minutiae/Minutiae_Map_Images_256_JPG'
 
-    read_minutiae_map_folder_path = (
-        "../../data/re_pre-Process/Minutiae/minutiaeMaps"
-    )
-    write_minutiae_map_folder_path = (
-        "../../data/re_pre-Process/Minutiae/resize/minutiaeMaps_256"
-    )
+    read_minutiae_map_folder_path = "../../data/U_Are_U/Minutiae/minutiaeMaps"
+    write_minutiae_map_folder_path = "../../data/U_Are_U/Minutiae/resize/minutiaeMaps_All"
 
-    read_minutiae_map_folder_path_20 = (
-        "../../data/re_pre-Process/Minutiae/minutiaeMaps20"
-    )
-    write_minutiae_map_folder_path_20 = (
-        "../../data/re_pre-Process/Minutiae/resize/minutiaeMaps20_256"
-    )
 
-    read_minutiae_map_folder_path_40 = (
-        "../../data/re_pre-Process/Minutiae/minutiaeMaps40"
-    )
-    write_minutiae_map_folder_path_40 = (
-        "../../data/re_pre-Process/Minutiae/resize/minutiaeMaps40_256"
-    )
-
-    read_fingerprint_folder_path = '../../data/re_pre-Process_2/FingerPrints/FingerPrints_1Channel'
-    write_fingerprint_folder_path = '../../data/re_pre-Process_2/FingerPrints/resize/FingerPrints_1Channel_256'
+    read_fingerprint_folder_path = '../../data/U_Are_U/FingerPrints/original_jpeg'
+    write_fingerprint_folder_path = '../../data/U_Are_U/FingerPrints/resize/FingerPrints_All'
 
     resize_images = Resize_Images()
 
     # Minutiae
-    # resize_images.read_all_files(read_minutiae_map_folder_path, write_minutiae_map_folder_path, False)
-    # resize_images.read_all_files(read_fingerprint_folder_path, write_fingerprint_folder_path, True)
-
-    # resize_images.read_all_files(
-    #     read_minutiae_map_folder_path, write_minutiae_map_folder_path, False
-    # )
-
-    # resize_images.read_all_files(
-    #     read_minutiae_map_folder_path_20, write_minutiae_map_folder_path_20, False
-    # )
-    # resize_images.read_all_files(
-    #     read_minutiae_map_folder_path_40, write_minutiae_map_folder_path_40, False
-    # )
-
+    resize_images.read_all_files(read_minutiae_map_folder_path, write_minutiae_map_folder_path)
 
     # Finger Prints
-    resize_images.read_all_files(
-        read_fingerprint_folder_path, write_fingerprint_folder_path, False
-    )
+    resize_images.read_all_files(read_fingerprint_folder_path, write_fingerprint_folder_path)
 
 
 if __name__ == "__main__":

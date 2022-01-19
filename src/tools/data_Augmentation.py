@@ -4,10 +4,18 @@ from pathlib import Path
 
 # Minutiae Paths
 directoryPath_Min = (
-    "D:/Git_WorkSpace/ITSEC21/data/re_pre-Process/model_Data/minutiae_Maps_All/"
+    "D:/Git_WorkSpace/ITSEC21/data/CrossMatch_Sample_DB/model_Data/A/"
 )
 directorySubFolders = ["test/", "train/", "val/"]
 data_Aug_Types = [
+    "original",
+    # "rotate_right_90",
+    # "rotate_left_90",
+    "rotate_180",
+    # "noise",
+]
+
+data_Aug_Types_Cmp = [
     "original",
     "rotate_right_90",
     "rotate_left_90",
@@ -16,13 +24,13 @@ data_Aug_Types = [
 ]
 
 savePath_Min = (
-    "D:/Git_WorkSpace/ITSEC21/data/re_pre-Process_2/data_Augmentation/A/"
+    "D:/Git_WorkSpace/ITSEC21/data/CrossMatch_Sample_DB/dataAugmentation/original_flip/A/"
 )
 
 # FingerPrints Path
-directoryPath_Fin = "D:/Git_WorkSpace/ITSEC21/data/re_pre-Process_2/model_Data/FingerPrints/"
+directoryPath_Fin = "D:/Git_WorkSpace/ITSEC21/data/CrossMatch_Sample_DB/model_Data/B/"
 savePath_Fin = (
-    "D:/Git_WorkSpace/ITSEC21/data/re_pre-Process_2/data_Augmentation/B/"
+    "D:/Git_WorkSpace/ITSEC21/data/CrossMatch_Sample_DB/dataAugmentation/original_flip/B/"
 )
 
 # Copies the same image to different path
@@ -95,23 +103,23 @@ def perform_Sugmentation():
                     destPath_Fin = (
                         savePath_Fin + folder + augmentType + "_" + str(index) + ".jpg"
                     )
-                if augmentType == data_Aug_Types[0]:
+                if augmentType == data_Aug_Types_Cmp[0]:
                     copyFunction(imagePath=imagePath_Min, destPath=destPath_Min)
                     copyFunction(imagePath=imagePath_Fin, destPath=destPath_Fin)
                 elif (
-                    augmentType == data_Aug_Types[1]
+                    augmentType == data_Aug_Types_Cmp[1]
                     and folder == directorySubFolders[1]
                 ):
                     rotate_right_90(imagePath=imagePath_Min, destPath=destPath_Min)
                     rotate_right_90(imagePath=imagePath_Fin, destPath=destPath_Fin)
                 elif (
-                    augmentType == data_Aug_Types[2]
+                    augmentType == data_Aug_Types_Cmp[2]
                     and folder == directorySubFolders[1]
                 ):
                     rotate_left_90(imagePath=imagePath_Min, destPath=destPath_Min)
                     rotate_left_90(imagePath=imagePath_Fin, destPath=destPath_Fin)
                 elif (
-                    augmentType == data_Aug_Types[3]
+                    augmentType == data_Aug_Types_Cmp[3]
                     and folder == directorySubFolders[1]
                 ):
                     rotate_180(imagePath=imagePath_Min, destPath=destPath_Min)

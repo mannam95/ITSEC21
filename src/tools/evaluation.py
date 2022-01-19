@@ -4,7 +4,7 @@ import base64
 import json
 import requests
 
-dirPath = "D:/FingerPrint_Dataset/Logs/FingMin_All/fingmin_all_v6/test_latest/images/"
+dirPath = "D:/FingerPrint_Dataset/Logs/CrossMatch/cross_all_v7/test_latest/images/"
 
 
 files = os.listdir(dirPath)
@@ -17,7 +17,7 @@ for index, image in enumerate(files):
         len3 = len1 - len2
         separateFiles.append(image[:len3])
 
-
+count = 0
 for index, image in enumerate(separateFiles):
     print image
 
@@ -38,6 +38,10 @@ for index, image in enumerate(separateFiles):
 
     print r,r.json()
 
+    if r.json().keys()[0] != 'message':
+        if r.json()["decision"].strip() != 'failed':
+            count = count + 1
+
     # print r.json()["decision"]
 
     # print len(r.json()["decision"])
@@ -54,3 +58,5 @@ for index, image in enumerate(separateFiles):
 
     #     print r.json().keys()[1]
     #     break
+
+print(count, " images passed")
