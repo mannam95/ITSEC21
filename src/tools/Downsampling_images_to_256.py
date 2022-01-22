@@ -1,7 +1,5 @@
 import numpy as np
-import tensorflow as tf
 from PIL import Image
-from matplotlib import pyplot as plt
 
 import os
 import cv2
@@ -21,7 +19,6 @@ class Resize_Images:
 
     def read_all_files(self, read_path, write_path):
         for file in os.listdir(read_path):
-            image = tf.io.read_file(str(read_path + "/" + file))
             # This will downsample the minutiae maps
             if file.endswith(".jpg"):
                 image = cv2.imread(str(read_path + "/" + file))
@@ -53,8 +50,8 @@ class Resize_Images:
 
 def main():
 
-    read_minutiae_map_folder_path = "../../data/U_Are_U/Minutiae/minutiaeMaps"
-    write_minutiae_map_folder_path = "../../data/U_Are_U/Minutiae/resize/minutiaeMaps_All"
+    read_minutiae_map_folder_path = "../../data/U_Are_U/Minutiae/minutiaeMaps20"
+    write_minutiae_map_folder_path = "../../data/U_Are_U/Minutiae/resize/minutiaeMaps_20"
 
 
     read_fingerprint_folder_path = '../../data/U_Are_U/FingerPrints/original_jpeg'
@@ -66,7 +63,7 @@ def main():
     resize_images.read_all_files(read_minutiae_map_folder_path, write_minutiae_map_folder_path)
 
     # Finger Prints
-    resize_images.read_all_files(read_fingerprint_folder_path, write_fingerprint_folder_path)
+    # resize_images.read_all_files(read_fingerprint_folder_path, write_fingerprint_folder_path)
 
 
 if __name__ == "__main__":
