@@ -35,7 +35,21 @@ class Resize_Images:
                 image = cv2.imread(str(read_path + "/" + file))
                 im_pil = Image.open(str(read_path + "/" + file))
 
-                im_pil2 = add_margin(im_pil, 0, 16, 0, 15, 255)
+                # U_r_U
+                # im_pil2 = add_margin(im_pil, 0, 16, 0, 15, 255)
+
+                # CASIA
+                im_pil2 = add_margin(im_pil, 0, 14, 0, 14, 255)
+
+                #Cross
+                # im_pil2 = add_margin(im_pil, 12, 0, 12, 0, 255)
+
+                im_pil = Image.fromarray(np.array(im_pil2))
+                
+                fileName = str(file).rstrip(".jpeg")
+                # im_pil.save(
+                #     write_path + "/resized_" + fileName + ".png", dpi=(500, 500), quality=500
+                # )
 
                 open_cv_img = cv2.cvtColor(np.array(im_pil2), cv2.COLOR_RGB2BGR)
                 imageresize = cv2.resize(open_cv_img, (256, 256), interpolation = cv2.INTER_AREA)
@@ -50,12 +64,12 @@ class Resize_Images:
 
 def main():
 
-    read_minutiae_map_folder_path = "../../data/U_Are_U/Minutiae/minutiaeMaps20"
-    write_minutiae_map_folder_path = "../../data/U_Are_U/Minutiae/resize/minutiaeMaps_20"
+    read_minutiae_map_folder_path = "D:/FingerPrint_Dataset/New_Exp/CASIA/Minutiae/minutiaeMaps"
+    write_minutiae_map_folder_path = "D:/FingerPrint_Dataset/New_Exp/CASIA/Test_Data/CASIA_Min/test"
 
 
-    read_fingerprint_folder_path = '../../data/U_Are_U/FingerPrints/original_jpeg'
-    write_fingerprint_folder_path = '../../data/U_Are_U/FingerPrints/resize/FingerPrints_All'
+    read_fingerprint_folder_path = 'D:/FingerPrint_Dataset/New_Exp/CASIA/FingerPrints/CASIA_JPEG'
+    write_fingerprint_folder_path = 'D:/FingerPrint_Dataset/New_Exp/CASIA/Test_Data/CASIA_Fing/test'
 
     resize_images = Resize_Images()
 

@@ -5,7 +5,7 @@
 import os
 
 
-RelativePath = "D:/Git_WorkSpace/ITSEC21/data/CrossMatch_Sample_DB/model_Data/"
+RelativePath = "D:/Git_WorkSpace/ITSEC21/data/U_Are_U/dataAugmentation/UASplit1/"
 
 fing_Relative_Path = RelativePath + "B"
 min_Relative_Path = RelativePath + "A"

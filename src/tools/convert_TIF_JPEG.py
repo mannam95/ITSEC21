@@ -5,7 +5,7 @@ import glob as glob
 import cv2
 
 
-dirPath = "D:/Git_WorkSpace/ITSEC21/data/CrossMatch_Sample_DB/"
+dirPath = "D:/Git_WorkSpace/ITSEC21/data/U_Are_U/FingerPrints/"
 
 #Clone the google drive to the folder where the tif files are present
 count = 0
@@ -14,7 +14,7 @@ for file in os.listdir(dirPath + 'original_tif/'):
     print(file)
     jpegName = str(file).rstrip(".tif")
     count = count + 1
-    jpegPath = dirPath + 'original_jpeg/' + str(count) + '.jpeg'
+    jpegPath = dirPath + 'original_png/' + jpegName+ '.png'
     # im = Image.open(str(dirPath + "original_tif/" + file))
     # greyScaleImage = im.convert("L")
     # # im.convert('RGB').save(jpegPath, dpi=(500, 500))

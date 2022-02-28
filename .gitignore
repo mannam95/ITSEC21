@@ -169,4 +169,7 @@ model/training_checkpoints/checkpoint
 !**/CrossMatch_Sample_DB/Minutiae/minutiaeExtraction/
 
 
+**/data/Mix/**
+
+
 

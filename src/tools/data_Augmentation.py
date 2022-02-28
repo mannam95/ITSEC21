@@ -2,15 +2,12 @@ import os
 from PIL import Image, ImageFilter
 from pathlib import Path
 
-# Minutiae Paths
-directoryPath_Min = (
-    "D:/Git_WorkSpace/ITSEC21/data/CrossMatch_Sample_DB/model_Data/A/"
-)
+
 directorySubFolders = ["test/", "train/", "val/"]
 data_Aug_Types = [
     "original",
-    # "rotate_right_90",
-    # "rotate_left_90",
+    "rotate_right_90",
+    "rotate_left_90",
     "rotate_180",
     # "noise",
 ]
@@ -20,18 +17,16 @@ data_Aug_Types_Cmp = [
     "rotate_right_90",
     "rotate_left_90",
     "rotate_180",
-    "noise",
+    # "noise",
 ]
 
-savePath_Min = (
-    "D:/Git_WorkSpace/ITSEC21/data/CrossMatch_Sample_DB/dataAugmentation/original_flip/A/"
-)
+# Minutiae Paths
+directoryPath_Min = "D:/Git_WorkSpace/ITSEC21/data/CrossMatch_Sample_DB/model_Data/Split2/A/"
+savePath_Min = "D:/Git_WorkSpace/ITSEC21/data/CrossMatch_Sample_DB/dataAugmentation/CDASplit1/A/"
 
 # FingerPrints Path
-directoryPath_Fin = "D:/Git_WorkSpace/ITSEC21/data/CrossMatch_Sample_DB/model_Data/B/"
-savePath_Fin = (
-    "D:/Git_WorkSpace/ITSEC21/data/CrossMatch_Sample_DB/dataAugmentation/original_flip/B/"
-)
+directoryPath_Fin = "D:/Git_WorkSpace/ITSEC21/data/CrossMatch_Sample_DB/model_Data/Split2/B/"
+savePath_Fin = "D:/Git_WorkSpace/ITSEC21/data/CrossMatch_Sample_DB/dataAugmentation/CDASplit1/B/"
 
 # Copies the same image to different path
 def copyFunction(imagePath, destPath):

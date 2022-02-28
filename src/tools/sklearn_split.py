@@ -4,13 +4,13 @@ import os
 import shutil
 from pathlib import Path
 
-min_Dir_Path = 'D:/Git_WorkSpace/ITSEC21/data/CrossMatch_Sample_DB/Minutiae/resize/minutiaeMaps_All/'
-fin_Dir_Path = 'D:/Git_WorkSpace/ITSEC21/data/CrossMatch_Sample_DB/FingerPrints/resize/FingerPrints_All/'
+min_Dir_Path = 'D:/Git_WorkSpace/ITSEC21/data/U_Are_U/Minutiae/resize/minutiaeMaps_40/'
+fin_Dir_Path = 'D:/Git_WorkSpace/ITSEC21/data/U_Are_U/FingerPrints/resize/FingerPrints_All/'
 
-dest_Min_Path = 'D:/Git_WorkSpace/ITSEC21/data/CrossMatch_Sample_DB/model_Data/Split2/A/'
-dest_Fing_Path = 'D:/Git_WorkSpace/ITSEC21/data/CrossMatch_Sample_DB/model_Data/Split2/B/'
+dest_Min_Path = 'D:/Git_WorkSpace/ITSEC21/data/U_Are_U/model_Data/USplit5/A/'
+dest_Fing_Path = 'D:/Git_WorkSpace/ITSEC21/data/U_Are_U/model_Data/USplit5/B/'
 
-Path('D:/Git_WorkSpace/ITSEC21/data/CrossMatch_Sample_DB/model_Data/Split2').mkdir(parents=True, exist_ok=True)
+Path('D:/Git_WorkSpace/ITSEC21/data/U_Are_U/model_Data/USplit5').mkdir(parents=True, exist_ok=True)
 Path(dest_Min_Path).mkdir(parents=True, exist_ok=True)
 Path(dest_Fing_Path).mkdir(parents=True, exist_ok=True)
 

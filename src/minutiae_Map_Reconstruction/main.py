@@ -1,10 +1,10 @@
 import image_creation
 if __name__ == '__main__':
-    folder_path = '../../data/U_Are_U/Minutiae/minutiaeExtraction'
-    size_x = 326
-    size_y = 357
-    output_folder = '../../data/U_Are_U/Minutiae/minutiaeMaps'
-    threshold = 20
+    folder_path = 'D:/FingerPrint_Dataset/New_Exp/CASIA/CASIA_Minutiae/CASIA_Minutiae'
+    size_x = 328
+    size_y = 356
+    output_folder = 'D:/FingerPrint_Dataset/New_Exp/CASIA/Minutiae/minutiaeMaps'
+    threshold = 0
 
     image_creation.create_all_minutiae_maps(folder_path, size_x, size_y, output_folder, threshold)
 

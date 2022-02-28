@@ -3,34 +3,46 @@ import sys
 import base64
 import json
 import requests
-import matplotlib.pyplot as plt
-import numpy as np
 
-dirPath = "D:/FingerPrint_Dataset/Logs/CrossMatch/cross_all_v10/test_latest/images/"
+# dirPath = "D:/FingerPrint_Dataset/Logs/New_Exp/Cross_Match/test_latest/images/"
+# fakePath = "D:/FingerPrint_Dataset/Logs/New_Exp/Cross_Match/test_latest/images/"
 
-dirPath = "C:/Users/Lukas/Documents/Uni/ITSEC/cross_all_v10/test_latest/images/"
 
-files = os.listdir(dirPath)
+dirPath = "D:/FingerPrint_Dataset/Logs/New_Exp/casia_new1/test_latest/images/"
+fakePath = "D:/FingerPrint_Dataset/Logs/New_Exp/casia_new1/test_latest/images/"
+
+
+files = os.listdir(fakePath)
 
 separateFiles = []
 for index, image in enumerate(files):
     if image.endswith("fake_B.png"):
-        len1 = len(image)
-        len2 = len(image[-10:])
-        len3 = len1 - len2
-        separateFiles.append(image[:len3])
+        # CrossMatch
+        imgName = image[8:]
+        imgName = imgName[:-11]
+        separateFiles.append(imgName)
+
+        # URU
+        # imgName = image[:-11]
+        # separateFiles.append(imgName)
 
 count = 0
-count_fail = 0
-scores = []
-veryfinger_error_count = 0
-
+score36 = 0
+score48 = 0
+score60 = 0
 for index, image in enumerate(separateFiles):
+    print(image)
 
-    fingPath = dirPath
+    # CrossMatch
+    imgName1 = "resized_" + image + "_real_B.png"
+    imgName2 = "resized_" + image + "_fake_B.png"
 
-    img1Path = fingPath + image + "fake_B.png"
-    img2Path = fingPath + image + "real_B.png"
+    # URU
+    # imgName1 = image + "_real_B.png"
+    # imgName2 = image + "_real_B.png"
+
+    img1Path = dirPath + imgName1
+    img2Path = fakePath + imgName2
 
     with open(img1Path, "rb") as f:
         im_bytes1 = f.read()  
@@ -51,47 +63,21 @@ for index, image in enumerate(separateFiles):
 
     result = r.json()
 
-    print(image)
-    print(result)
+    print("Finger Print Name: ", image)
+    print("Result: ",result)
 
     if 'decision' in result:
-        if result.get('decision').strip() == 'succeeded':
-            count = count + 1
-        else:
-            count_fail += 1
-        scores.append(r.json()["score"])
-    else:
-        veryfinger_error_count += 1
-    print(scores[len(scores)-1])
+        # if result.get('decision').strip() == 'succeeded':
+        #     count = count + 1
+        
+        if result.get('score') >= 36:
+            score36 = score36 + 1
 
-print(count, " images passed")
-plt.bar(['succeeded', 'failed', 'verifinger error'], [count, count_fail, veryfinger_error_count])
-plt.savefig('')
-plt.grid()
-plt.show()
+        if result.get('score') >= 48:
+            score48 = score48 + 1
 
-boundaries = [0,36,48,60]
-occurences = np.zeros(len(boundaries)-1)
-for i in range(1, len(boundaries)):
-    for s in scores:
-        if boundaries[i] <= s < boundaries[i]:
-            occurences[i-1] += 1
-plt.bar(list(map(str, boundaries[1:len(boundaries)])), [100*x/(len(scores)+veryfinger_error_count)for x in occurences])
-plt.title("perentage of scores in ranges")
-plt.grid()
-plt.show()
-print()
-
-boundaries = [0,36,48,60]
-occurences = np.zeros(len(boundaries)-1)
-for i in range(1, len(boundaries)):
-    for s in scores:
-        if s >= boundaries[i]:
-            occurences[i-1] += 1
-plt.bar(list(map(str,boundaries[1:len(boundaries)])), [100*x/(len(scores)+veryfinger_error_count)for x in occurences])
-plt.title("percentage of passings according to thresholds")
-plt.grid()
-plt.show()
-print()
-
-
+        if result.get('score') >= 60:
+            score60 = score60 + 1
+print(score36, " images passed")
+print(score48, " images passed")
+print(score60, " images passed")

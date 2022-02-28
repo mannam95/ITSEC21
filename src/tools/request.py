@@ -5,12 +5,15 @@ import base64
 import json
 import requests
 
-if ( len(sys.argv) != 3 ):
-    print 'Usage: python request.py <fingerprint_image_1> <fingerprint_image_2>'
-    sys.exit(0)
+# if ( len(sys.argv) != 3 ):
+#     print 'Usage: python request.py <fingerprint_image_1> <fingerprint_image_2>'
+#     sys.exit(0)
 
-img1_base64 = base64.b64encode(open(sys.argv[1], "rb").read())
-img2_base64 = base64.b64encode(open(sys.argv[2], "rb").read())	
+img1_base64 = base64.b64encode(open("D:/FingerPrint_Dataset/upScaleImages/temp/resized_10_fake_B.png", "rb").read())
+img2_base64 = base64.b64encode(open("D:/FingerPrint_Dataset/upScaleImages/temp/resized_10_fake_B.png", "rb").read())	
+
+# img1_base64 = base64.b64encode(open("D:/Git_WorkSpace/ITSEC21/data/CrossMatch_Sample_DB/FingerPrints/resize/FingerPrints_504_504/resized_2.png", "rb").read())
+# img2_base64 = base64.b64encode(open("D:/Git_WorkSpace/ITSEC21/data/CrossMatch_Sample_DB/FingerPrints/resize/FingerPrints_504_504/resized_223.png", "rb").read())
 
 url = "http://141.44.30.186:5001/api/verifinger"
 headers = {'Content-type': 'application/json'}
