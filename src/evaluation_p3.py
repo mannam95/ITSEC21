@@ -8,8 +8,8 @@ import requests
 # fakePath = "D:/FingerPrint_Dataset/Logs/New_Exp/Cross_Match/test_latest/images/"
 
 
-dirPath = "D:/FingerPrint_Dataset/Logs/New_Exp/U_R_U/upscale/"
-fakePath = "D:/FingerPrint_Dataset/Logs/New_Exp/U_R_U/upscale/"
+dirPath = "D:/FingerPrint_Dataset/Logs/New_Exp/casia_new2/test_latest/images/"
+fakePath = "D:/FingerPrint_Dataset/Logs/New_Exp/casia_new2/test_latest/images/"
 
 
 files = os.listdir(fakePath)
@@ -18,13 +18,13 @@ separateFiles = []
 for index, image in enumerate(files):
     if image.endswith("fake_B.png"):
         # CrossMatch
-        # imgName = image[8:]
-        # imgName = imgName[:-11]
-        # separateFiles.append(imgName)
+        imgName = image[8:]
+        imgName = imgName[:-11]
+        separateFiles.append(imgName)
 
         # URU
-        imgName = image[:-11]
-        separateFiles.append(imgName)
+        # imgName = image[:-11]
+        # separateFiles.append(imgName)
 
 count = 0
 score36 = 0
@@ -34,12 +34,12 @@ for index, image in enumerate(separateFiles):
     print(image)
 
     # CrossMatch
-    # imgName1 = "resized_" + image + "_real_B.png"
-    # imgName2 = "resized_" + image + "_fake_B.png"
+    imgName1 = "resized_" + image + "_real_B.png"
+    imgName2 = "resized_" + image + "_fake_B.png"
 
     # URU
-    imgName1 = image + "_real_B.png"
-    imgName2 = image + "_fake_B.png"
+    # imgName1 = image + "_real_B.png"
+    # imgName2 = image + "_real_B.png"
 
     img1Path = dirPath + imgName1
     img2Path = fakePath + imgName2

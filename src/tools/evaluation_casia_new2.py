@@ -8,7 +8,7 @@ from subprocess32 import check_output
 
 # dirPath = "D:/FingerPrint_Dataset/Logs/U_R_U/U_R_U_All_V6/test_latest/images/"
 
-dirPath = "/vol1/itsec_3/pytorch-CycleGAN-and-pix2pix/results/cross_all_v18/test_latest/images/"
+dirPath = "/vol1/itsec_3/pytorch-CycleGAN-and-pix2pix/results/casia_new2/test_latest/images/"
 
 
 files = os.listdir(dirPath)
@@ -44,13 +44,13 @@ for index, image in enumerate(separateFiles):
         # if decision.strip() != 'failed':
         #     count = count + 1
         #     break
-        if score >= 36:
+        if int(score) >= 36:
             score36 = score36 + 1
 
-        if score >= 48:
+        if int(score) >= 48:
             score48 = score48 + 1
 
-        if score >= 60:
+        if int(score) >= 60:
             score60 = score60 + 1
     except:
         print("Couldn't execute the fingerprint")
