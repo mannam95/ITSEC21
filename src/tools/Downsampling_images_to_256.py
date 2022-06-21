@@ -61,23 +61,49 @@ class Resize_Images:
                 )
 
 
+# Process the minutiae maps resize
+def run_minutiate():
+    # Root Path
+    root_path = "/home/srinath/Documents/git/ITSEC21/data/CrossMatch_Sample_DB"
+    # root_path = "/home/srinath/Documents/git/ITSEC21/data/U_Are_U"
 
-def main():
-
-    read_minutiae_map_folder_path = "D:/FingerPrint_Dataset/New_Exp/CASIA/Minutiae/minutiaeMaps"
-    write_minutiae_map_folder_path = "D:/FingerPrint_Dataset/New_Exp/CASIA/Test_Data/CASIA_Min/test"
-
-
-    read_fingerprint_folder_path = 'D:/FingerPrint_Dataset/New_Exp/CASIA/FingerPrints/CASIA_JPEG'
-    write_fingerprint_folder_path = 'D:/FingerPrint_Dataset/New_Exp/CASIA/Test_Data/CASIA_Fing/test'
+    # Minutiae Input, Output Path
+    read_minutiae_map_folder_path = root_path + "/Minutiae/minutiaeMaps"
+    write_minutiae_map_folder_path = root_path + "/Minutiae/minutiaeMaps_resize_256"
 
     resize_images = Resize_Images()
 
-    # Minutiae
+    # Create the output path if it doesn't exist.
+    if not os.path.isdir(write_minutiae_map_folder_path):
+        os.mkdir(write_minutiae_map_folder_path)
+
+    # Call the method
     resize_images.read_all_files(read_minutiae_map_folder_path, write_minutiae_map_folder_path)
 
-    # Finger Prints
-    # resize_images.read_all_files(read_fingerprint_folder_path, write_fingerprint_folder_path)
+# Process the fingerprints resize
+def run_fingerprints():
+    # Root Path
+    root_path = "/home/srinath/Documents/git/ITSEC21/data/CrossMatch_Sample_DB"
+    # root_path = "/home/srinath/Documents/git/ITSEC21/data/U_Are_U"
+
+    # Fingerprints Input, Output Path
+    read_fingerprint_folder_path = root_path + '/FingerPrints/original_jpeg'
+    write_fingerprint_folder_path = root_path  + '/FingerPrints/fingerprints_resize_256'
+
+    resize_images = Resize_Images()
+
+    # Create the output path if it doesn't exist.
+    if not os.path.isdir(write_fingerprint_folder_path):
+        os.mkdir(write_fingerprint_folder_path)
+
+    # Call the method
+    resize_images.read_all_files(read_fingerprint_folder_path, write_fingerprint_folder_path)
+
+
+def main():
+
+    # run_minutiate()
+    run_fingerprints()
 
 
 if __name__ == "__main__":

@@ -1,12 +1,18 @@
 import image_creation
 if __name__ == '__main__':
-    folder_path = 'D:/FingerPrint_Dataset/New_Exp/CASIA/CASIA_Minutiae/CASIA_Minutiae'
-    size_x = 328
-    size_y = 356
-    output_folder = 'D:/FingerPrint_Dataset/New_Exp/CASIA/Minutiae/minutiaeMaps'
-    threshold = 0
+    
+    
+    input_path = '/home/srinath/Documents/git/ITSEC21/data/CrossMatch_Sample_DB/Minutiae/minutiaeExtraction'
+    output_path = '/home/srinath/Documents/git/ITSEC21/data/CrossMatch_Sample_DB/Minutiae/minutiaeMaps'
 
-    image_creation.create_all_minutiae_maps(folder_path, size_x, size_y, output_folder, threshold)
+    cross_match_x = 504
+    cross_match_y = 480
+    u_r_u_x = 328
+    u_r_u_y = 356
+
+    threshold = 0 # this is a parameter, consider the minutiae points only if their confidence score is more than this.
+
+    image_creation.create_all_minutiae_maps(input_path, cross_match_x, cross_match_y, output_path, threshold)
 
 
 
