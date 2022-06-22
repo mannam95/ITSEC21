@@ -9,7 +9,7 @@ import os
 # upscale_fake_path = "/home/srinath/Documents/itsec_new/results/upscaled/new_CM_5_S2_Fold2/fake/"
 
 # Host Machine Paths
-results_path = "/vol1/itsec_1/pytorch-CycleGAN-and-pix2pix/results/new_CM_5_S2_Fold1/test_latest/images"
+results_path = "/vol1/itsec_1/pytorch-CycleGAN-and-pix2pix/results/new_CM_5_S2_Fold1/test_latest/images/"
 original_path = "/vol1/itsec_1/new_exp/data/neuro/CrossMatch/"
 
 upscale_real_path = "/vol1/itsec_1/new_exp/results/upscaled/CrossMatch_5_SplitsV2/folder_1/real/"
