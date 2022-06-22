@@ -4,8 +4,8 @@ import os
 from sklearn.model_selection import StratifiedKFold
 import shutil
 
-parent_dir = '/home/srinath/Documents/itsec_new/neuro/CrossMatchCombined/CrossMatchMinutiae'
-save_splits_dir = '/home/srinath/Documents/itsec_new/neuro/CrossMatchCombined/model_data/CrossMatch_5_SplitsV1'
+parent_dir = '/vol1/itsec_1/new_exp/data/neuro/combined/URU_Combined_512_to_256'
+save_splits_dir = '/vol1/itsec_1/pytorch-CycleGAN-and-pix2pix/datasets/new_exp/URU_5_Splits_V1'
 files = []
 def read_files(dir_path):
     """This function adds the padding to the given image. 
@@ -54,8 +54,8 @@ def create_k_folders(folder_prefix):
     train_path = os.path.join(path, sub_train_directory)
     test_path = os.path.join(path, sub_test_directory)
 
-    if (os.path.exists(path) == False):
-        os.mkdir(path)
+    if (os.path.exists(save_splits_dir) == False):
+        os.mkdir(save_splits_dir)
     if (os.path.exists(path) == False):
         os.mkdir(path)
     if (os.path.exists(train_path) == False):
