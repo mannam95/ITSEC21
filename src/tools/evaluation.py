@@ -4,7 +4,7 @@ import base64
 import json
 import requests
 
-dirPath = "D:/FingerPrint_Dataset/Logs/U_R_U/U_R_U_All_V6/test_latest/images/"
+dirPath = "/home/srinath/Documents/itsec_new/results/new_cross_match_point_minutiae_v1/test_latest/images/"
 
 
 files = os.listdir(dirPath)
@@ -29,7 +29,7 @@ for index, image in enumerate(separateFiles):
     img2_base64 = base64.b64encode(open(img2Path, "rb").read())	
     # img2_base64 = base64.b64encode(open(img1Path, "rb").read())	
 
-    url = "http://141.44.30.186:5001/api/verifinger"
+    url = ""
     headers = {'Content-type': 'application/json'}
     data = {'im1': img1_base64, 'im2': img2_base64}
 

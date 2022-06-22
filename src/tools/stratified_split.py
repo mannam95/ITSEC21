@@ -4,9 +4,10 @@ import os
 from sklearn.model_selection import StratifiedKFold
 import shutil
 
-parent_dir = '/home/srinath/Documents/itsec_new/neuro/CrossMatchCombined/CrossMatchMinutiae'
+parent_dir = '/home/srinath/Documents/itsec_new/neuro/UareU_sample_DB'
 save_splits_dir = '/home/srinath/Documents/itsec_new/neuro/CrossMatchCombined/model_data/CrossMatch_5_SplitsV1'
 files = []
+
 def read_files(dir_path):
     """This function adds the padding to the given image. 
 
