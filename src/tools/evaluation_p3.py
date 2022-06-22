@@ -8,8 +8,8 @@ import requests
 # fakePath = "D:/FingerPrint_Dataset/Logs/New_Exp/Cross_Match/test_latest/images/"
 
 
-dirPath = "D:/FingerPrint_Dataset/Logs/New_Exp/casia_new1/test_latest/images/"
-fakePath = "D:/FingerPrint_Dataset/Logs/New_Exp/casia_new1/test_latest/images/"
+dirPath = "/home/srinath/Documents/itsec_new/results/new_cross_match_point_minutiae_v1/test_latest/images/"
+fakePath = "/home/srinath/Documents/itsec_new/results/new_cross_match_point_minutiae_v1/test_latest/images/"
 
 
 files = os.listdir(fakePath)
@@ -18,8 +18,9 @@ separateFiles = []
 for index, image in enumerate(files):
     if image.endswith("fake_B.png"):
         # CrossMatch
-        imgName = image[8:]
-        imgName = imgName[:-11]
+        # imgName = image[:8]
+        # print(imgName)
+        imgName = image[:-10]
         separateFiles.append(imgName)
 
         # URU
@@ -34,8 +35,8 @@ for index, image in enumerate(separateFiles):
     print(image)
 
     # CrossMatch
-    imgName1 = "resized_" + image + "_real_B.png"
-    imgName2 = "resized_" + image + "_fake_B.png"
+    imgName1 = image + "real_B.png"
+    imgName2 = image + "fake_B.png"
 
     # URU
     # imgName1 = image + "_real_B.png"
@@ -43,6 +44,8 @@ for index, image in enumerate(separateFiles):
 
     img1Path = dirPath + imgName1
     img2Path = fakePath + imgName2
+    print(img1Path)
+    print(img2Path)
 
     with open(img1Path, "rb") as f:
         im_bytes1 = f.read()  
@@ -55,7 +58,7 @@ for index, image in enumerate(separateFiles):
     img2_base64 = base64.b64encode(im_bytes2).decode("utf8")
 
 
-    url = "http://141.44.30.186:5001/api/verifinger"
+    url = ""
     headers = {'Content-type': 'application/json'}
     data = {'im1': img1_base64, 'im2': img2_base64}
 
@@ -78,6 +81,8 @@ for index, image in enumerate(separateFiles):
 
         if result.get('score') >= 60:
             score60 = score60 + 1
+    
+    break
 print(score36, " images passed")
 print(score48, " images passed")
 print(score60, " images passed")

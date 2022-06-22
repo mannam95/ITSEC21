@@ -7,6 +7,7 @@ import shutil
 parent_dir = '/vol1/itsec_1/new_exp/data/neuro/combined/URU_Combined_512_to_256'
 save_splits_dir = '/vol1/itsec_1/pytorch-CycleGAN-and-pix2pix/datasets/new_exp/URU_5_Splits_V1'
 files = []
+
 def read_files(dir_path):
     """This function adds the padding to the given image. 
 
