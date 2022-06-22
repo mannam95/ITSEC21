@@ -12,8 +12,8 @@ import os
 results_path = "/vol1/itsec_1/pytorch-CycleGAN-and-pix2pix/results/new_CM_5_S2_Fold1/test_latest/images/"
 original_path = "/vol1/itsec_1/new_exp/data/neuro/CrossMatch/"
 
-upscale_real_path = "/vol1/itsec_1/new_exp/results/upscaled/CrossMatch_5_SplitsV2/folder_1/real/"
-upscale_fake_path = "/vol1/itsec_1/new_exp/results/upscaled/CrossMatch_5_SplitsV2/folder_1/fake/"
+upscale_real_path = "/vol1/itsec_1/new_exp/results/upscaled/CrossMatch_5_SplitsV2/folder_1_diff/real/"
+upscale_fake_path = "/vol1/itsec_1/new_exp/results/upscaled/CrossMatch_5_SplitsV2/folder_1_diff/fake/"
 
 # Create directories if not present
 if (os.path.exists(upscale_real_path) == False):
@@ -66,6 +66,20 @@ def upscale_fake(image):
         upscale_fake_path + image + ".png", dpi=(500, 500), quality=500
     )
 
+def upscale_real_old(image):
+    """This function upscales and saves the given old real image. 
+
+    :return: Returns None.
+    """
+    real_img_path = results_path + image + "_real_B.png"
+
+
+    img = Image.open(real_img_path)
+    img = img.resize((512,512), Image.ANTIALIAS)
+    img.save(
+        upscale_real_path + image + ".png", dpi=(500, 500), quality=500
+    )
+
 def upscale_real(image):
     """This function upscales and saves the given real image. 
 
@@ -96,5 +110,6 @@ def upscale_real(image):
 for index, image in enumerate(separateFiles):
 
     upscale_fake(image)
-    upscale_real(image)
+    upscale_real_old(image)
+    # upscale_real(image)
 
