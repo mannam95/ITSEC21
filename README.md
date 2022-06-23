@@ -19,20 +19,22 @@ These instructions will get you to set up on your local machine for development 
 
 - Clone the repository or download and unzip it.
 - Make sure that all the files are present in folder and in the following similar structure.
-- Install the packages mentioned at req.txt
-- Conda env creation: conda create -n <environment-name> --file req.txt
-
-```
-ITSEC21(Parent Folder)
-    data
-            CrossMatch_Sample_DB
-            U_Are_U
-    src
-            minutiae_Map_Reconstruction
-            tools
-    .gitignore
-    README.md
-```
+    ```
+    ITSEC21(Parent Folder)
+        data
+                CrossMatch_Sample_DB
+                U_Are_U
+        src
+                minutiae_Map_Reconstruction
+                tools
+        .gitignore
+        README.md
+    ```
+- Install the packages mentioned in `environment.yml`
+   ```
+    #Do this in the project folder console.
+    conda env create -f environment.yml
+   ```
 
 ## Working in devlopment
 

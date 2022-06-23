@@ -8,7 +8,7 @@ import sys
 files = []
 
 def read_files(dir_path):
-    """This function adds the padding to the given image. 
+    """This function reads all the files. 
 
     :param dir_path: the fingerprints directory path.
     :return: Returns (X, y) tuple for splitting.

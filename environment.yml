@@ -15,11 +15,12 @@ dependencies:
   - brotlipy=0.7.0=py310h7f8727e_1002
   - bzip2=1.0.8=h7b6447c_0
   - c-ares=1.18.1=h7f98852_0
-  - ca-certificates=2022.4.26=h06a4308_0
+  - ca-certificates=2022.6.15=ha878542_0
   - cairo=1.16.0=ha61ee94_1011
-  - certifi=2020.6.20=pyhd3eb1b0_3
+  - certifi=2022.6.15=py310hff52083_0
   - cffi=1.15.0=py310hd667e15_1
   - charset-normalizer=2.0.4=pyhd3eb1b0_0
+  - colorama=0.4.5=pyhd8ed1ab_0
   - cryptography=36.0.0=py310h9ce1e76_0
   - cycler=0.11.0=pyhd8ed1ab_0
   - dbus=1.13.6=he372182_0
@@ -134,7 +135,7 @@ dependencies:
   - numpy=1.22.4=py310h4ef5377_0
   - opencv=4.5.5=py310hff52083_11
   - openh264=2.1.1=h780b84a_0
-  - openssl=1.1.1o=h7f8727e_0
+  - openssl=1.1.1p=h166bdaf_0
   - p11-kit=0.24.1=hc5aa10d_0
   - packaging=21.3=pyhd8ed1ab_0
   - pathlib=1.0.1=pyhd3eb1b0_1
@@ -162,10 +163,12 @@ dependencies:
   - six=1.16.0=pyhd3eb1b0_1
   - sqlite=3.38.5=h4ff8645_0
   - statistics=1.0.3.5=py310h06a4308_1
+  - subprocess32=3.5.4=py_1
   - svt-av1=1.1.0=h27087fc_1
   - tk=8.6.12=h1ccaba5_0
   - toml=0.10.2=pyhd8ed1ab_0
   - tornado=6.1=py310h5764c6d_3
+  - tqdm=4.64.0=pyhd8ed1ab_0
   - tzdata=2022a=hda174b7_0
   - unicodedata2=14.0.0=py310h5764c6d_1
   - urllib3=1.26.9=py310h06a4308_0
@@ -201,3 +204,4 @@ dependencies:
     - scikit-learn==1.1.1
     - scipy==1.8.1
     - threadpoolctl==3.1.0
+prefix: /home/srinath/miniconda3/envs/itsec_main
