@@ -3,9 +3,8 @@ import numpy as np
 import os
 from sklearn.model_selection import StratifiedKFold
 import shutil
+import sys
 
-parent_dir = '/vol1/itsec_1/new_exp/data/neuro/combined/URU_Combined_512_to_256'
-save_splits_dir = '/vol1/itsec_1/pytorch-CycleGAN-and-pix2pix/datasets/new_exp/URU_5_Splits_V1'
 files = []
 
 def read_files(dir_path):
@@ -26,14 +25,15 @@ def read_files(dir_path):
     return (np.sort(np.asarray(_X)), np.sort(np.asarray(_y)))
 
 
-def k_stratified_splits(k=5):
+def k_stratified_splits(input_dir,k=5):
     """This function does stratified k splits. 
 
+    :param input_dir: input directory of files.
     :param k: splits length.
     :return: Returns the k stratified splits, each split as (train, test) tuple.
     """
     skf = StratifiedKFold(n_splits=k)
-    (X, y) = read_files(parent_dir)
+    (X, y) = read_files(input_dir)
     X_train_split, X_test_split = [], []
     for train_index, test_index in skf.split(X, y):
         X_train, X_test = X[train_index], X[test_index]
@@ -43,33 +43,28 @@ def k_stratified_splits(k=5):
     
     return (X_train_split, X_test_split)
 
-def create_k_folders(folder_prefix):
+def create_k_folders(output_dir,folder_prefix):
     """This function creates the k directories. 
 
+    :param output_dir: output directory of files.
     :return: Returns the (train_path, test_path) path.
     """
-    main_directory = 'folder_'+str(folder_prefix+1)
-    sub_train_directory = 'train'
-    sub_test_directory = 'test'
-    path = os.path.join(save_splits_dir, main_directory)
-    train_path = os.path.join(path, sub_train_directory)
-    test_path = os.path.join(path, sub_test_directory)
+    path = os.path.join(output_dir, 'folder_'+str(folder_prefix+1))
+    train_path = os.path.join(path, "train")
+    test_path = os.path.join(path, "test")
 
-    if (os.path.exists(save_splits_dir) == False):
-        os.mkdir(save_splits_dir)
-    if (os.path.exists(path) == False):
-        os.mkdir(path)
     if (os.path.exists(train_path) == False):
-        os.mkdir(train_path)
+        os.makedirs(train_path)
     if (os.path.exists(test_path) == False):
-        os.mkdir(test_path)
+        os.makedirs(test_path)
     
     return (train_path, test_path)
 
-def copy_file(train_test_data, train_path, test_path):
+def copy_file(train_test_data, input_dir, train_path, test_path):
     """This function copies files recursively to the specified fold train, test. 
 
     :param train_test_data: (train_split, test_split) as a tuple.
+    :param input_dir: input directory of files.
     :param train_path: train folder path.
     :param test_path: test folder path.
     :return: Returns None.
@@ -78,7 +73,7 @@ def copy_file(train_test_data, train_path, test_path):
     for fingerprint in X_train_split: # loop over at fingerprint level.
         variations = [s for s in files if fingerprint in s] # get all variations for the current fingerprint.
         for current_variation in variations:
-            train_source_path = parent_dir + '/' + str(current_variation)  
+            train_source_path = input_dir + '/' + str(current_variation)  
             train_destination_path = str(train_path) + '/' + str(current_variation)    
             if (train_source_path):
                 shutil.copy2(train_source_path, train_destination_path)
@@ -86,25 +81,43 @@ def copy_file(train_test_data, train_path, test_path):
     for fingerprint in X_test_split: # loop over at fingerprint level.
         variations = [s for s in files if fingerprint in s] # get all variations for the current fingerprint.
         for current_variation in variations:
-            test_source_path = parent_dir + '/' + str(current_variation)  
+            test_source_path = input_dir + '/' + str(current_variation)  
             test_destination_path = str(test_path) + '/' + str(current_variation)
             if (test_source_path):
                 shutil.copy2(test_source_path, test_destination_path)
 
-def store_k_splits():
+def store_k_splits(input_dir, output_dir):
     """This function performs each mentioned step. 
 
+    :param input_dir: input directory of files.
+    :param output_dir: OUTPUT directory of files.
     :return: Returns None.
     """
-    (X_train_split, X_test_split) = k_stratified_splits(5)
+    (X_train_split, X_test_split) = k_stratified_splits(input_dir, 5)
     
     for index, split_data in enumerate(zip(X_train_split, X_test_split)):
-        (train_path, test_path) = create_k_folders(index)
-        copy_file(split_data, train_path, test_path)
+        (train_path, test_path) = create_k_folders(output_dir, index)
+        copy_file(split_data, input_dir, train_path, test_path)
+
+def main():
+
+    if ( len(sys.argv) < 3 ):
+        print('Usage: python '+sys.argv[0]+ ' <input_dir> <output_dir>')
+        print('\tinput_dir: this folder should include image files only')
+        print('\toutput_dir: padded or rescaled images will be stored in this folder')
+        sys.exit(0)
+    
+    input_dir =  sys.argv[1]
+
+    output_dir = sys.argv[2]
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+    
+    store_k_splits(input_dir, output_dir)
 
 
-# Call the main function
-store_k_splits()
+if __name__ == '__main__':
+    main()
 
 
 
