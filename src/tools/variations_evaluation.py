@@ -68,8 +68,8 @@ def evaluate_with_verifinger(dir_path, fingerprints_list):
       for each_fake_image in fake_images:
         for each_real_image in real_images:
           if (each_real_image.find("_".join(each_fake_image.split("_", 3)[:3])) == -1):
-            img1Path = dir_path + '/' + each_fake_image
-            img2Path = dir_path + '/' + each_real_image
+            img1Path = dir_path + '/' + each_real_image
+            img2Path = dir_path + '/' + each_fake_image
             try:
             
               count = count + 1
