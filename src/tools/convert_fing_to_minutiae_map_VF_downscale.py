@@ -173,7 +173,7 @@ def main():
             tmpfile = tempfile.NamedTemporaryFile(mode='wb')
             subprocess.Popen(["convert", "-units", "PixelsPerInch", input_dir+'/'+fp_image_file, "-density", "500", tmpfile.name]).wait()
             tmpfile.seek(0)
-            output = subprocess.check_output( ['/vol1/makrushin/verifinger/VerifingerMinutiae', tmpfile.name] )
+            output = subprocess.check_output( ['VerifingerMinutiae', tmpfile.name] )
             tmpfile.close()
         except subprocess.CalledProcessError:
             print("cannot extract minutiae: " + fp_image_file + " (" + tmpfile.name + ")")
