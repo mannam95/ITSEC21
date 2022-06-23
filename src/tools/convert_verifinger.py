@@ -72,9 +72,9 @@ def create_pointingMinutiae(minutiae_list, im_size, square_size, line_length, li
         #draw circle
         #draw.ellipse( (left,top,right,bottom), fill=color, outline=color )
         
-        #draw square
-        minutiae_map = np.array(im)
-        minutiae_map[top:bottom,left:right] = color
+        #draw square (Comment these two lines to get rid of squares)
+        # minutiae_map = np.array(im)
+        # minutiae_map[top:bottom,left:right] = color
     
     return minutiae_map        
 
