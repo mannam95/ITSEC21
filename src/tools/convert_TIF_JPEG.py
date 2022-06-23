@@ -2,13 +2,27 @@
 import os
 from PIL import Image
 import glob as glob
+import cv2
+
+
+dirPath = "D:/Git_WorkSpace/ITSEC21/data/U_Are_U/FingerPrints/"
 
 #Clone the google drive to the folder where the tif files are present
-for name in glob.glob('*.tif'):
-    jpegName = str(name).rstrip(".tif")
-    jpegPath = '/content/drive/My Drive/Colab Notebooks/OVGU/ITSEC_21/imageConversion/FingerPrints_1Channel/' + jpegName + '.jpeg'
-    im = Image.open(name)
-    greyScaleImage = im.convert("L")
-    # im.convert('RGB').save(jpegPath, dpi=(500, 500))
-    greyScaleImage.save(jpegPath, dpi=(500, 500), quality=500)
+count = 0
+for file in os.listdir(dirPath + 'original_tif/'):
+# for name in glob.glob('*.tif'):
+    print(file)
+    jpegName = str(file).rstrip(".tif")
+    count = count + 1
+    jpegPath = dirPath + 'original_png/' + jpegName+ '.png'
+    # im = Image.open(str(dirPath + "original_tif/" + file))
+    # greyScaleImage = im.convert("L")
+    # # im.convert('RGB').save(jpegPath, dpi=(500, 500))
+    # greyScaleImage.save(jpegPath, dpi=(500, 500), quality=500)
     # im.convert("P", palette=Image.ADAPTIVE, colors=8).save(jpegPath, dpi=(500, 500))
+
+
+    read = cv2.imread(str(dirPath + "original_tif/" + file))
+    grayimage = cv2.cvtColor(read, cv2.COLOR_BGR2GRAY)
+    im_pil = Image.fromarray(grayimage)
+    im_pil.save(jpegPath, dpi=(500, 500), quality=500)
