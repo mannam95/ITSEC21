@@ -6,8 +6,12 @@ from subprocess32 import check_output
 from tqdm import tqdm
 import random
 
-# read all the files from directory and store its corresponding fingerprint classes
 def read_files(dir_path):
+    """This function reads all the files from directory and store its corresponding fingerprint classes. 
+
+    :param dir_path: the fingerprints directory path.
+    :return: Returns all files.
+    """
     all_files = {'files': [], 'classes': []}
     for file in os.listdir(dir_path):
       all_files['files'].append(file)
@@ -15,69 +19,83 @@ def read_files(dir_path):
     
     return all_files
 
-# create a list of different variations of fingerprints 
-def get_fingerprints_list(dir_path, files, unique_classes):
-  fingerprints_list = []
-  for each_class_name in unique_classes:
-    fingerprints_array = []
-    for file in files:
-      if (file.startswith(each_class_name) and file.endswith('_B.png')):
-        fingerprints_array.append(file)
-    fingerprints_list.append(fingerprints_array)
-  
-  return fingerprints_list
+def get_fingerprints_list(files, unique_classes):
+    """This function creates a list of different variations of fingerprints . 
+
+    :param files: the files which have been read.
+    :param unique_classes: unique classes based on fingerprint level.
+    :return: Returns all fingerprints at class level.
+    """
+    fingerprints_list = []
+    for each_class_name in unique_classes:
+      fingerprints_array = []
+      for file in files:
+        if (file.startswith(each_class_name) and file.endswith('_B.png')):
+          fingerprints_array.append(file)
+      fingerprints_list.append(fingerprints_array)
+    
+    return fingerprints_list
 
 
 def evaluate_with_verifinger(dir_path, fingerprints_list):
+    """This function does the evaluation with verifinger. 
+
+    :param dir_path: the fingerprints directory path.
+    :param fingerprints_list: all fingerprints at class level.
+    :return: Returns matching scores.
+    """
 
     score36 = 0
     score48 = 0
     score60 = 0
+    count = 0
 
     # loop over different fingerprints lists
-    for each_fingerprints_list in fingerprints_list:
-      real_images = []
-      fake_images = []
+    for each_fingerprints_list in tqdm(fingerprints_list):
+        real_images = []
+        fake_images = []
 
-      # get real and fake images in different arrays
-      for fingerprint in each_fingerprints_list:
-        if fingerprint.find("_real_")!=-1:
-          real_images.append(fingerprint)
-        else:
-          if fingerprint.find("_fake_")!=-1:
-            fake_images.append(fingerprint)
+        # get real and fake images in different arrays
+        for fingerprint in each_fingerprints_list:
+          if fingerprint.find("_real_")!=-1:
+            real_images.append(fingerprint)
+          else:
+            if fingerprint.find("_fake_")!=-1:
+              fake_images.append(fingerprint)
 
-      # evaluate each generated finger print image with its other original variations 
-      for each_fake_image in fake_images:
-        for each_real_image in real_images:
-          if (each_real_image.find("_".join(each_fake_image.split("_", 3)[:3])) == -1):
-            img1Path = dir_path + '/' + each_fake_image
-            img2Path = dir_path + '/' + each_real_image
-            try:
-             
-            # Use this in SSH
-            #  r = check_output( ['Verifinger1toN', img1Path, img2Path], timeout=60 )
-            #  print(r)
-            #  lines = r.split(b';')
-            #  score = int(lines[2].decode("utf-8"))
-              
-              # Use this in local system
-              score = random.randint(20,100)
-              
-              print("Score: ", score)
-              if score >= 36:
-                score36 = score36 + 1
-              
-              if score >= 48:
-                score48 = score48 + 1
+        
+        # evaluate each generated finger print image with its other original variations 
+        for each_fake_image in fake_images:
+            for each_real_image in real_images:
+                if (each_real_image.find("_".join(each_fake_image.split("_", 3)[:3])) == -1):
+                    img1Path = dir_path + '/' + each_fake_image
+                    img2Path = dir_path + '/' + each_real_image
+                    try:
+                    
+                      count = count + 1
+                    # Use this in SSH
+                    #  r = check_output( ['Verifinger1toN', img1Path, img2Path], timeout=60 )
+                    #  print(r)
+                    #  lines = r.split(b';')
+                    #  score = int(lines[2].decode("utf-8"))
+                      
+                      # Use this in local system
+                      score = random.randint(20,100)
+                      
+                      print("Score: ", score)
+                      if score >= 36:
+                        score36 = score36 + 1
+                      
+                      if score >= 48:
+                        score48 = score48 + 1
 
-              if score >= 60:
-                score60 = score60 + 1
+                      if score >= 60:
+                        score60 = score60 + 1
 
-            except:
-              print("Couldn't execute the fingerprint")
-              continue
-    return (score36, score48, score60)
+                    except:
+                      print("Couldn't execute the fingerprint")
+                      continue
+    return (score36, score48, score60, count)
 
 def main():
 
@@ -98,10 +116,10 @@ def main():
     fingerprints_list = get_fingerprints_list(input_dir, files, unique_classes)
 
     # call the evaluation function
-    (score36, score48, score60) = evaluate_with_verifinger(input_dir, fingerprints_list)
+    (score36, score48, score60, count) = evaluate_with_verifinger(input_dir, fingerprints_list)
 
-    # print("Evaluation total images: ", len(unique_files))
-    # print("Evaluation images that didn't met the any criteria: ", len(unique_files) - score36)
+    print("Evaluation total images: ", len(count))
+    print("Evaluation images that didn't met the any criteria: ", len(count) - score36)
     print("Score 36: ", score36, " images passed")
     print("Score 48: ", score48, " images passed")
     print("Score 60: ", score60, " images passed")
