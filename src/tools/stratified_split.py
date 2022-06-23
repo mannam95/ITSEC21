@@ -104,7 +104,7 @@ def main():
     if ( len(sys.argv) < 3 ):
         print('Usage: python '+sys.argv[0]+ ' <input_dir> <output_dir>')
         print('\tinput_dir: this folder should include image files only')
-        print('\toutput_dir: padded or rescaled images will be stored in this folder')
+        print('\toutput_dir: stratified splits will be saved in this main directory')
         sys.exit(0)
     
     input_dir =  sys.argv[1]
