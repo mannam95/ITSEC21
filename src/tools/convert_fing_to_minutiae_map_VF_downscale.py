@@ -180,7 +180,7 @@ def main():
             continue
 
         #print(output)
-        lines = output.split('\n')
+        lines = output.split(b'\n')
         minutiaelist=list()
 
         for line in lines:
@@ -197,12 +197,12 @@ def main():
             #    if line.find("vertical") != -1:  
             #        vres = float(line[line.find("vertical") + len("vertical resolution: ") : ])
             #        print(vres) 
-
+            line = line.decode('UTF-8')  
             if len(line) > 0 and line[0] == '{':
                 X = float(line[line.find("X=") + len("X=") : line.find(", Y")])
                 Y = float(line[line.find("Y=") + len("Y=") : line.find(", T")])
                 Type = line[line.find("Type=") + len("Type=") : line.find(", A")]
-                Angle = float(line[line.find("Angle=") + len("Angle=") : line.find("\xc2\xb0,")])
+                Angle = float(line[line.find("Angle=") + len("Angle=") : line.find("°")])
                 Quality = float(line[line.find("Quality=") + len("Quality=") : line.find("%,")])
                 #Curvature = float(line[line.find("Curvature=") + len("Curvature=") : line.find(", G")])
                 #G = line[line.find("G=") + len("G=") : line.find("}")]
