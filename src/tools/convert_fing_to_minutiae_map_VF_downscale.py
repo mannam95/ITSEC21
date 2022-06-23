@@ -72,9 +72,9 @@ def create_pointingMinutiae(minutiae_list, im_size, square_size, line_length, li
         #draw circle
         #draw.ellipse( (left,top,right,bottom), fill=color, outline=color )
         
-        #draw square (Comment these two lines to get rid of squares)
-        # minutiae_map = np.array(im)
-        # minutiae_map[top:bottom,left:right] = color
+        #draw square
+        minutiae_map = np.array(im)
+        # minutiae_map[top:bottom,left:right] = color #(Comment this one lines to get rid of squares)
     
     return minutiae_map        
 
@@ -212,7 +212,7 @@ def main():
 
 
         #print('------')
-        #print(minutiaelist)
+        # print(minutiaelist)
 
         # rescale image
         im_orig = Image.open(input_dir + '/' + fp_image_file).convert('L')
@@ -220,12 +220,12 @@ def main():
         if scale != 1.0:
             size = (int(scale*im_orig.size[0]+0.5), int(scale*im_orig.size[1]+0.5))
             im_orig_scaled = im_orig.resize(size)
-            #print(size)
+            # print(size)
         else:
             size = im_orig.size
             im_orig_scaled = im_orig
 
-        minutiae_quality_thr = 20.0
+        minutiae_quality_thr = 0
             
         if method == 'monoSquare':
             minutiae_map = create_monoSquare(minutiaelist, size, int(12.0*scale+0.5), minutiae_quality_thr) 
@@ -255,7 +255,7 @@ def main():
         else:
             print("unknown method for minutiae representation")
             sys.exit(-1) 
-  
+
         minutiae_map = Image.fromarray(minutiae_map)
 
         #debug
