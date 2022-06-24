@@ -30,7 +30,7 @@ def upscale_fake(image_name, input_dir, output_dir):
     :return: Returns None.
     """
 
-    fake_img_path = input_dir + "/" + image_name + ".png"
+    fake_img_path = input_dir + "/" + image_name + "_fake_B.png"
     img = Image.open(fake_img_path)
     img = img.resize((512,512), Image.ANTIALIAS)
     img.save(
