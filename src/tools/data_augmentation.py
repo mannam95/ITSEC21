@@ -2,6 +2,7 @@ import os
 import sys
 import PIL
 from PIL import Image
+import shutil
 
 
 def read_files(dir_path):
@@ -61,6 +62,29 @@ def flip_image(image_path, save_path):
         print("Couldn't flipe the image: ", image_path)
 
 
+def perform_flip_augmentation(output_dir, unique_files):
+    """This function augments each flipped image. 
+
+    :param output_dir: the augmented images saved path.
+    :param unique_files: the image path.
+    :return: Returns None.
+    """
+    # Process rotating the images.
+    rotation_options = [10,20,-10,-20]
+    for angle in rotation_options:
+        print("flipped image augmenting angle: ", angle)
+        if angle == -10 or angle == -20:
+            postfix_name = "_minus_"
+        else:
+            postfix_name = "_plus_"
+        for index, image_name in enumerate(unique_files):
+            file_name = image_name.rsplit('.', 1)[0]
+            image_path = output_dir + "/" + file_name + "_flip.png"
+            save_path = output_dir + "/" + file_name + "_flip_" + postfix_name + str(abs(angle)) + ".png"
+            rotate_image(image_path, save_path, angle)
+        print("Completed flipped image augmenting angle: ", angle)
+
+
 def perform_augmentation(input_dir, output_dir, unique_files):
     """This function augments each image. 
 
@@ -74,9 +98,13 @@ def perform_augmentation(input_dir, output_dir, unique_files):
     rotation_options = [10,20,-10,-20]
     for angle in rotation_options:
         print("Augmenting angle: ", angle)
+        if angle == -10 or angle == -20:
+            postfix_name = "_minus_"
+        else:
+            postfix_name = "_plus_"
         for index, image_name in enumerate(unique_files):
             image_path = input_dir + "/" + image_name
-            save_path = output_dir + "/" + image_name.rsplit('.', 1)[0] + "_angle_" + str(angle) + ".png"
+            save_path = output_dir + "/" + image_name.rsplit('.', 1)[0] + postfix_name + str(abs(angle)) + ".png"
             rotate_image(image_path, save_path, angle)
         print("Completed augmenting angle: ", angle)
     
@@ -84,9 +112,18 @@ def perform_augmentation(input_dir, output_dir, unique_files):
     print("Augmenting flipiing")
     for index, image_name in enumerate(unique_files):
         image_path = input_dir + "/" + image_name
-        save_path = output_dir + "/" + image_name.rsplit('.', 1)[0] + "_flip" + ".png"
+        save_path = output_dir + "/" + image_name.rsplit('.', 1)[0] + "_flip.png"
         flip_image(image_path, save_path)
+    perform_flip_augmentation(output_dir, unique_files) # perform augmentation for flipped images
     print("Completed augmenting flipping")
+
+    # Process orifinal images.
+    print("Copying the original files")
+    for index, image_name in enumerate(unique_files):
+        image_path = input_dir + "/" + image_name
+        save_path = output_dir + "/" + image_name
+        shutil.copy(image_path, save_path)
+    print("Completed copying original images flipping")
 
 
 def main():
