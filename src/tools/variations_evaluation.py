@@ -30,7 +30,7 @@ def get_fingerprints_list(files, unique_classes):
     for each_class_name in unique_classes:
       fingerprints_array = []
       for file in files:
-        if (file.startswith(each_class_name) and file.endswith('_B.png')):
+        if (file.startswith(each_class_name+'_') and file.endswith('_B.png')):
           fingerprints_array.append(file)
       fingerprints_list.append(fingerprints_array)
     
