@@ -25,7 +25,7 @@ def main():
     unique_files = read_files(input_dir)
 
     # call the evaluation function
-    evaluate_single_verifinger(input_dir, unique_files)
+    evaluate_single_verifinger(input_dir, unique_files, eval_file_path)
 
 
 if __name__ == '__main__':
