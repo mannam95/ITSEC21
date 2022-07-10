@@ -1,3 +1,4 @@
+"""This module contains simple helper functions """
 import os
 
 

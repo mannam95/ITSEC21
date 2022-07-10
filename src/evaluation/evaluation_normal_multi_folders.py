@@ -1,5 +1,7 @@
-from utils.read_files import read_files
-from utils.verifinger_single_evaluate import evaluate_single_verifinger
+import sys
+sys.path.insert(0, '../utils')
+from read_files import read_files
+from verifinger_single_evaluate import evaluate_single_verifinger
 
 
 def main():

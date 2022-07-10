@@ -1,7 +1,8 @@
 import os
 import sys
-from utils.split_files_into_groups import read_files_split_into_groups
-from utils.verifinger_variations_evaluate import evaluate_variations_verifinger
+sys.path.insert(0, '../utils')
+from split_files_into_groups import read_files_split_into_groups
+from verifinger_variations_evaluate import evaluate_variations_verifinger
 
 
 def main():
