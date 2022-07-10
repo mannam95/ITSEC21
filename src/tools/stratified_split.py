@@ -43,6 +43,7 @@ def k_stratified_splits(input_dir,k=5):
     
     return (X_train_split, X_test_split)
 
+
 def create_k_folders(output_dir,folder_prefix):
     """This function creates the k directories. 
 
@@ -59,6 +60,7 @@ def create_k_folders(output_dir,folder_prefix):
         os.makedirs(test_path)
     
     return (train_path, test_path)
+
 
 def copy_file(train_test_data, input_dir, train_path, test_path):
     """This function copies files recursively to the specified fold train, test. 
@@ -86,6 +88,7 @@ def copy_file(train_test_data, input_dir, train_path, test_path):
             if (test_source_path):
                 shutil.copy2(test_source_path, test_destination_path)
 
+
 def store_k_splits(input_dir, output_dir):
     """This function performs each mentioned step. 
 
@@ -98,6 +101,7 @@ def store_k_splits(input_dir, output_dir):
     for index, split_data in enumerate(zip(X_train_split, X_test_split)):
         (train_path, test_path) = create_k_folders(output_dir, index)
         copy_file(split_data, input_dir, train_path, test_path)
+
 
 def main():
 
@@ -118,6 +122,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
-stratified_split.py

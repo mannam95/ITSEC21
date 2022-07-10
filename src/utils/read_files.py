@@ -1,3 +1,6 @@
+import os
+
+
 def read_files(dir_path):
     """This function reads the unique fake file names. 
 
