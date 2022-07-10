@@ -1,6 +1,6 @@
 # ITSEC - Reconstruction of Fingerprints from Minutiae Templates
 
-### Contributors (Assignment Team)
+### Contributors (Project Team)
 
 - **Venkata Srinath Mannam**
 - **Meghana Rao**
@@ -14,6 +14,8 @@ These instructions will get you to set up on your local machine for development 
 
 - Understanding of python, linux would be better.
 - Create a conda env or python venv
+- Should have a fingerprints dataset.
+- Should have access to the softwares like [Verifinger](https://www.neurotechnology.com/verifinger.html) or [NIST](https://www.nist.gov/programs-projects/biometrics)
 
 ### Installing
 
@@ -21,12 +23,12 @@ These instructions will get you to set up on your local machine for development 
 - Make sure that all the files are present in folder and in the following similar structure.
     ```
     ITSEC21(Parent Folder)
-        data
-                CrossMatch_Sample_DB
-                U_Are_U
-        src
-                minutiae_Map_Reconstruction
-                tools
+        evaluation
+                evaluation_normal_multi_folders.py
+                evaluation_normal_single_folder.py
+        minutiae_map
+        tools
+        utils
         .gitignore
         README.md
     ```
@@ -54,13 +56,14 @@ The project includes multiple tasks:
 ### Extracting Minutiae
 
 - To extract minutiae we have used MINDTCT tool by [NIST](https://nvlpubs.nist.gov/nistpubs/Legacy/IR/nistir7392.pdf).
-- The mentioned datasets are in ".tif" format but MINDTCT tool expects the inputs to be in ".jpeg" format. To convert the datasets, we have used the python script [src/tools/convert_TIF_JPEG.py](src/tools/convert_TIF_JPEG.py)
-- To iteratively extract minutiae we have used the script file [src/minutiae_Map_Reconstruction/extractMinutiae.sh](src/minutiae_Map_Reconstruction/extractMinutiae.sh)
+- The mentioned datasets are in ".tif" format but MINDTCT tool expects the inputs to be in ".jpeg" format. To convert the datasets, we have used the python script [tools/convert_TIF_JPEG.py](tools/convert_TIF_JPEG.py)
+- To iteratively extract minutiae we have used the script file [src/minutiae_Map_Reconstruction/extractMinutiae.sh](minutiae_map/extractMinutiae.sh)
 
 ### Minutiae Map Construction
 
 - We have taken .xyt files which contains minutiae information.
-- Run the python file of [src/minutiae_Map_Reconstruction/main.py](src/minutiae_Map_Reconstruction/main.py). May be input folder and target folder paths needs to be modified in this file.
+- Run the python file of [minutiae_map/main.py](src/minutiae_map/main.py). 
+- May be input folder and target folder paths needs to be modified in this file.
 
 ### Training Data Creation
 
@@ -68,28 +71,29 @@ The project includes multiple tasks:
 
   - Cross Match dataset (Both for fingerprints, minutiae maps)
     - the original dimensions are 504\*480.
-    - we have applied in such a way that new dims are 504\*504.
+    - we have padded them, so that the shape is 504\*504.
     - Now we downscale the images until 256\*256.
-    - The above 3 steps are performed by using the python script [src/tools/Downsampling_images_to_256.py](src/tools/Downsampling_images_to_256.py)
+    - The above 3 steps are performed by using the python script [tools/downsample_imgs_to_256.py](tools/downsample_imgs_to_256.py)
   - U.are.U dataset (Both for fingerprints, minutiae maps)
     - the original dimensions are 326\*357.
-    - we have applied in such a way that new dims are 357\*357.
+    - we have padded them, so that the shape is 357\*357.
     - Now we downscale the images until 256\*256.
-    - The above 3 steps are performed by using the python script [src/tools/Downsampling_images_to_256.py](src/tools/Downsampling_images_to_256.py)
+    - The above 3 steps are performed by using the python script [tools/downsample_imgs_to_256.py](tools/downsample_imgs_to_256.py)
 
-- We should create the train, test, val sets of the downsampled images for both minutiae_Maps, fingerprints. This can be done by running the python script [src/tools/create_train_test_valid.py](src/tools/create_train_test_valid.py)
-- Using the above mentioned train, test, val sets train the model of [pix2pix-network](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix)
+- We should create the train, test, val sets for both minutiae-maps and fingerprints(from downsampled images). This can be done by running the python script [tools/train_test_val_split.py](tools/train_test_val_split.py)
+- Using the above created train, test, val sets and follow the instructions of [pix2pix-network](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix) for training, testing the model.
 
 ### Data Augmentation
 
-- In order to do augmentation for the dataset as the size of the datasets are very low, run the python script [src/tools/data_Augmentation.py](src/tools/data_Augmentation.py)
-- But augmentation didn't worked for our project.
+- In order to perform data augmentation for the dataset as the size of the datasets are very low, run the python script [tools/data_augmentation.py](tools/data_augmentation.py)
+- In our research we found that data-augmentation doesn't help the model training. Instead, we should increase the dataset size.
 
 ### Evaluation
 
-- Once the model is trained, now run the model for testing and it will gives us the reconstructed fingerprints.
-- Now, we should perform the evaluation for the original fingerprints and reconstructed fingerprints by the model.
-- The evaluation can be done by running the python script [src/tools/evaluation_p3.py](src/tools/evaluation_p3.py).
+- Once the model is trained, now run the model for testing and it will give us the reconstructed fingerprints.
+- Now, we should perform the evaluation for the original fingerprints and reconstructed fingerprints generated by the model.
+- The evaluation can be done by running the python script [evaluation/evaluation_normal_single_folder.py](evaluation/evaluation_normal_single_folder.py).
+- The above step will work only if you have configured [Verifinger](https://www.neurotechnology.com/verifinger.html) evaluation in your system.
 
 # Note
 
