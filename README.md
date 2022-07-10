@@ -7,15 +7,17 @@
 - **Lukas Partes**
 
 ## Getting Started
-
-These instructions will get you to set up on your local machine for development and testing purposes.
+- In this work we have explored the [pix2pix - image to image translation](https://arxiv.org/abs/1611.07004) paper for generating realistic fingerprints from minutiae maps.
+- This repository particularly is used for generating the training data(In other words pre-processing) for the pix2pix model.
+- These instructions will get you to set up on your local machine for development and testing purposes.
 
 ### Prerequisites
 
+- Should have fingerprints dataset.
+- Should have access to the softwares like [Verifinger](https://www.neurotechnology.com/verifinger.html) or [NIST](https://www.nist.gov/programs-projects/biometrics)
 - Understanding of python, linux would be better.
 - Create a conda env or python venv
-- Should have a fingerprints dataset.
-- Should have access to the softwares like [Verifinger](https://www.neurotechnology.com/verifinger.html) or [NIST](https://www.nist.gov/programs-projects/biometrics)
+
 
 ### Installing
 
