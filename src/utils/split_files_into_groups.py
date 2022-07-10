@@ -1,7 +1,8 @@
 import itertools
 from collections import defaultdict
 import re
-from read_files import read_files
+from utils.read_files import read_files
+# from utils.read_files import read_files
 
 
 def read_files_split_into_groups(dir_path):

@@ -1,7 +1,7 @@
 import os
 from subprocess import check_output
 from tqdm import tqdm
-from results_log_end import log_end_summary_scores
+from utils.results_log_end import log_end_summary_scores
 
 
 def evaluate_single_verifinger(dir_path, unique_files, eval_file_path):

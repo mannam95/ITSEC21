@@ -1,8 +1,11 @@
+import os
 import sys
 sys.path.insert(0, '../utils')
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
+sys.path.append(PROJECT_ROOT)
+from utils.split_files_into_groups import read_files_split_into_groups
+from utils.verifinger_variations_evaluate import evaluate_variations_verifinger
 from tqdm import tqdm
-from split_files_into_groups import read_files_split_into_groups
-from verifinger_variations_evaluate import evaluate_variations_verifinger
 
 
 def main():

@@ -1,8 +1,9 @@
 import os
 import sys
-sys.path.insert(0, '../utils')
-from read_files import read_files
-from verifinger_single_evaluate import evaluate_single_verifinger
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
+sys.path.append(PROJECT_ROOT)
+from utils.read_files import read_files
+from utils.verifinger_single_evaluate import evaluate_single_verifinger
 
 
 def main():
