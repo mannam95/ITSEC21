@@ -11,8 +11,8 @@ def log_end_summary_scores(score36, score48, score60, count, eval_file_path):
         print1 = "Evaluation total images: " + str(count)
         print2 = "Evaluation total images: " + "Evaluation images that didn't met the any criteria: " + str(count - score36)
         print3 = "Score 36: " + str(score36) + " images passed"
-        print4 = "Score 48: " + str(score48) + "images passed"
-        print5 = "Score 60: " + str(score60) + "images passed"
+        print4 = "Score 48: " + str(score48) + " images passed"
+        print5 = "Score 60: " + str(score60) + " images passed"
 
         f.write('\n')
         f.write("Below are results") # End Footer

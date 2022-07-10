@@ -23,8 +23,8 @@ def evaluate_single_verifinger(dir_path, unique_files, eval_file_path):
         for index, filename in enumerate(tqdm(unique_files)):
             print ('file num: ', index, ' and file name', filename)
 
-            img1Path = dir_path + "/" + filename + "fake_B.png"
-            img2Path = dir_path + "/" + filename + "real_B.png"
+            img1Path = dir_path + "/" + filename + "real_B.png"
+            img2Path = dir_path + "/" + filename + "fake_B.png"
 
             try:
 
