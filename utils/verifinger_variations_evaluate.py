@@ -77,4 +77,5 @@ def evaluate_variations_verifinger(dir_path, fingerprints_list, eval_file_path):
               message = template.format(type(ex).__name__, ex.args)
               print(message)
               continue
+
     log_end_summary_scores(score36, score48, score60, count, eval_file_path)

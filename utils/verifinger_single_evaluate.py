@@ -62,4 +62,4 @@ def evaluate_single_verifinger(dir_path, unique_files, eval_file_path):
                 print(message)
                 continue
         
-        log_end_summary_scores(score36, score48, score60, len(unique_files), eval_file_path)
+    log_end_summary_scores(score36, score48, score60, len(unique_files), eval_file_path)
