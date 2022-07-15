@@ -21,8 +21,9 @@ def main():
     eval_dir =  sys.argv[2]
     if not os.path.exists(eval_dir):
         os.makedirs(eval_dir)
+    eval_filename =  sys.argv[3]
 
-    eval_file_path = eval_dir + '/latest.txt'
+    eval_file_path = eval_dir + '/' + eval_filename
 
     # get the unique classes
     all_files = read_files_split_into_groups(input_dir)
